@@ -1,53 +1,63 @@
-<?php // Vue: liste des commissions interoperateur - sans design (V2 - tache 2 ETU004141) ?>
+<?= $this->extend('layouts/operateur') ?>
 
-<h1>Commissions interoperateur</h1>
+<?= $this->section('contenu') ?>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Commissions interoperateur</h1>
+    <a href="<?= site_url('commissions-interoperateur/creer') ?>" class="btn btn-primary">Ajouter une commission</a>
+</div>
 
 <?php if (session()->getFlashdata('message')): ?>
-    <p><?= esc(session()->getFlashdata('message')) ?></p>
+    <div class="alert alert-success"><?= esc(session()->getFlashdata('message')) ?></div>
 <?php endif; ?>
 
-<?php if (session()->getFlashdata('erreurs')): ?>
-    <ul>
-        <?php foreach (session()->getFlashdata('erreurs') as $erreur): ?>
-            <li><?= esc($erreur) ?></li>
-        <?php endforeach; ?>
-    </ul>
-<?php endif; ?>
-
-<p><a href="<?= site_url('operateur/commissions-interoperateur/creer') ?>">Ajouter une commission</a></p>
-
-<table border="1" cellpadding="5">
-    <thead>
-        <tr>
-            <th>Operateur</th>
-            <th>Prefixe</th>
-            <th>Pourcentage</th>
-            <th>Statut</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php if (empty($commissions)): ?>
-            <tr>
-                <td colspan="5">Aucune commission configuree.</td>
-            </tr>
-        <?php else: ?>
-            <?php foreach ($commissions as $commission): ?>
+<div class="card shadow-sm">
+    <div class="card-body p-0">
+        <table class="table table-striped table-hover mb-0">
+            <thead class="table-light">
                 <tr>
-                    <td><?= esc($commission['libelle']) ?></td>
-                    <td><?= esc($commission['prefixe']) ?></td>
-                    <td><?= esc($commission['pourcentage']) ?> %</td>
-                    <td><?= $commission['actif'] ? 'Active' : 'Inactive' ?></td>
-                    <td>
-                        <a href="<?= site_url('operateur/commissions-interoperateur/modifier/' . $commission['id']) ?>">Modifier</a>
-                        |
-                        <form action="<?= site_url('operateur/commissions-interoperateur/basculer/' . $commission['id']) ?>" method="post" style="display:inline;">
-                            <?= csrf_field() ?>
-                            <button type="submit"><?= $commission['actif'] ? 'Desactiver' : 'Activer' ?></button>
-                        </form>
-                    </td>
+                    <th>Operateur</th>
+                    <th>Prefixe</th>
+                    <th>Pourcentage</th>
+                    <th>Statut</th>
+                    <th class="text-end">Actions</th>
                 </tr>
-            <?php endforeach; ?>
-        <?php endif; ?>
-    </tbody>
-</table>
+            </thead>
+            <tbody>
+                <?php if (empty($commissions)): ?>
+                    <tr>
+                        <td colspan="5" class="text-center py-4 text-muted">Aucune commission configuree.</td>
+                    </tr>
+                <?php else: ?>
+                    <?php foreach ($commissions as $commission): ?>
+                        <tr>
+                            <td class="align-middle"><?= esc($commission['libelle']) ?></td>
+                            <td class="align-middle"><?= esc($commission['prefixe']) ?></td>
+                            <td class="align-middle"><?= esc($commission['pourcentage']) ?> %</td>
+                            <td class="align-middle">
+                                <?php if ($commission['actif']): ?>
+                                    <span class="badge bg-success">Active</span>
+                                <?php else: ?>
+                                    <span class="badge bg-secondary">Inactive</span>
+                                <?php endif; ?>
+                            </td>
+                            <td class="text-end align-middle">
+                                <a href="<?= site_url('commissions-interoperateur/modifier/' . $commission['id']) ?>" class="btn btn-sm btn-outline-primary">Modifier</a>
+                                <form action="<?= site_url('commissions-interoperateur/basculer/' . $commission['id']) ?>" method="post" style="display:inline;">
+                                    <?= csrf_field() ?>
+                                    <?php if ($commission['actif']): ?>
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">Desactiver</button>
+                                    <?php else: ?>
+                                        <button type="submit" class="btn btn-sm btn-outline-success">Activer</button>
+                                    <?php endif; ?>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<?= $this->endSection() ?>

@@ -13,6 +13,7 @@
             <a class="nav-link text-white" href="/admin/prefixes">Prefixes</a>
             <a class="nav-link text-white" href="/admin/types-operations">Types d'operation</a>
             <a class="nav-link text-white" href="/admin/baremes">Baremes</a>
+            <a class="nav-link text-white" href="/commissions-interoperateur">Commissions</a>
             <a class="nav-link text-white" href="/admin/gains">Gains</a>
             <a class="nav-link text-white" href="/admin/comptes-clients">Comptes clients</a>
             <a class="nav-link text-white" href="/admin/deconnexion">Deconnexion</a>
