@@ -11,6 +11,7 @@ class CommissionInteroperateurModel extends Model
     protected $allowedFields = ['id_operateur_config', 'pourcentage', 'actif'];
     protected $returnType    = 'array';
     protected $useTimestamps = false;
+    
 
     protected $validationRules = [
         'id_operateur_config' => 'required|integer',
@@ -35,7 +36,14 @@ class CommissionInteroperateurModel extends Model
     }
 
   
-    public function trouverCommissionActivePourOperateur(int $idOperateurConfig): ?array
+
+  
+
+    /**
+     * Récupère la commission pour un opérateur externe
+     * @return array|null La commission ou null si non trouvée/inactive
+     */
+    public function getCommissionParOperateur(int $idOperateurConfig): ?array
     {
         return $this->where('id_operateur_config', $idOperateurConfig)
             ->where('actif', 1)
@@ -62,6 +70,20 @@ class CommissionInteroperateurModel extends Model
             return false;
         }
 
-        return (bool) $this->update($idCommission, ['actif' => $commission['actif'] ? 0 : 1]);
+        return (bool) $this->update($idCommission, ['actif' => $commission['actif'] ? 0 : 1]);}
+    /**
+     * Calcule le montant de la commission interopérateur
+     * @return float Le montant de la commission (0 si non trouvée)
+     */
+    public function calculerCommission(int $idOperateurConfig, float $montant): float
+    {
+        $commission = $this->getCommissionParOperateur($idOperateurConfig);
+        
+        if ($commission === null) {
+            return 0.0;
+        }
+
+        return round($montant * ((float) $commission['pourcentage'] / 100), 2);
     }
+
 }

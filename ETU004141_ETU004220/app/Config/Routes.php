@@ -45,6 +45,8 @@ $routes->group('client', ['filter' => 'clientAuth'], function ($routes) {
     $routes->post('retrait', 'Retrait::effectuerRetrait');
     $routes->get('transfert', 'Transfert::formulaireTransfert');
     $routes->post('transfert', 'Transfert::effectuerTransfert');
+    $routes->get('envoi-multiple', 'EnvoiMultiple::formulaireEnvoiMultiple');
+    $routes->post('envoi-multiple', 'EnvoiMultiple::effectuerEnvoiMultiple');
     $routes->get('historique', 'Historique::voirHistorique');
 });
 

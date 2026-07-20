@@ -199,4 +199,13 @@ class App extends BaseConfig
      * @see http://www.w3.org/TR/CSP/
      */
     public bool $CSPEnabled = false;
+
+    /**
+     * --------------------------------------------------------------------------
+     * Mobile Money Configuration
+     * --------------------------------------------------------------------------
+     *
+     * Configuration pour le système mobile money
+     */
+    public int $telephoneLength = 10;
 }

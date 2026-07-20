@@ -17,7 +17,7 @@ class Historique extends BaseController
         $modeleOperation = new OperationModel();
         $codeType = $this->request->getGet('type');
 
-        $operations = $modeleOperation->historiqueParClient(
+        $operations = $modeleOperation->historiqueParClientGroupe(
             $clientId,
             $codeType ?: null
         );

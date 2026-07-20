@@ -88,6 +88,23 @@ class OperateurConfigModel extends Model
                 return (int) $operateur['est_notre_operateur'] === 0;
             }
         }
-        return false;
+        return false;}
+    /*Détermine si un numéro de téléphone appartient à notre opérateur ou à un opérateur externe
+     * @return array ['est_interne' => bool, 'operateur' => array|null]
+     */
+    public function determinerOperateur(string $numero): array
+    {
+        $prefixes = $this->where('actif', 1)->findAll();
+
+        foreach ($prefixes as $ligne) {
+            if (strpos($numero, $ligne['prefixe']) === 0) {
+                return [
+                    'est_interne' => (bool) $ligne['est_notre_operateur'],
+                    'operateur' => $ligne
+                ];
+            }
+        }
+
+        return ['est_interne' => false, 'operateur' => null];
     }
 }
