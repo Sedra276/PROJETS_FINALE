@@ -24,8 +24,12 @@ class OperationModel extends Model
     public function historiqueParClient(int $idClient, ?string $codeType = null)
 {
     $builder = $this
-        ->select('operation.*, type_operation.libelle AS type_libelle')
+        ->select('operation.*, type_operation.libelle AS type_libelle, 
+                  client_source.numero_telephone AS numero_source,
+                  client_destination.numero_telephone AS numero_destination')
         ->join('type_operation', 'type_operation.id = operation.id_type_operation')
+        ->join('client AS client_source', 'client_source.id = operation.id_client_source', 'left')
+        ->join('client AS client_destination', 'client_destination.id = operation.id_client_destination', 'left')
         ->groupStart()
             ->where('id_client_source', $idClient)
             ->orWhere('id_client_destination', $idClient)
