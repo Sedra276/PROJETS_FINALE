@@ -2,53 +2,31 @@
 
 <?= $this->section('contenu') ?>
 
-<div class="container mt-5">
-    <h3 class="mb-4">Historique des operations</h3>
+<h1 class="bloc-titre">Historique</h1>
 
-    <form method="get" action="<?= site_url('client/historique') ?>" class="row g-2 mb-4">
-        <div class="col-auto">
-            <select name="type" class="form-select">
-                <option value="">Tous les types</option>
-                <option value="DEPOT">Depot</option>
-                <option value="RETRAIT">Retrait</option>
-                <option value="TRANSFERT">Transfert</option>
-            </select>
+<form method="get" action="<?= site_url('client/historique') ?>" class="filtre-historique">
+    <select name="type">
+        <option value="">Tous les types</option>
+        <option value="DEPOT">Depot</option>
+        <option value="RETRAIT">Retrait</option>
+        <option value="TRANSFERT">Transfert</option>
+    </select>
+    <button type="submit">Filtrer</button>
+</form>
+
+<div class="liste-operations">
+    <?php foreach ($operations as $ligne): ?>
+        <div class="ligne-operation">
+            <div>
+                <div class="ligne-operation__type"><?= esc($ligne['type_libelle']) ?></div>
+                <div class="ligne-operation__date"><?= esc($ligne['date_operation']) ?></div>
+            </div>
+            <div>
+                <div class="ligne-operation__montant"><?= number_format($ligne['montant'], 0, ',', ' ') ?> Ar</div>
+                <div class="ligne-operation__frais">frais <?= number_format($ligne['frais_appliques'], 0, ',', ' ') ?> Ar</div>
+            </div>
         </div>
-        <div class="col-auto">
-            <button type="submit" class="btn btn-secondary">Filtrer</button>
-        </div>
-    </form>
-
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Type</th>
-                <th>Montant</th>
-                <th>Frais</th>
-                <th>Statut</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if (empty($operations)): ?>
-                <tr>
-                    <td colspan="5" class="text-center">Aucune opération trouvée</td>
-                </tr>
-            <?php else: ?>
-                <?php foreach ($operations as $ligne): ?>
-                    <tr>
-                        <td><?= esc($ligne['date_operation']) ?></td>
-                        <td><?= esc($ligne['type_libelle']) ?></td>
-                        <td><?= number_format($ligne['montant'], 0, ',', ' ') ?> Ar</td>
-                        <td><?= number_format($ligne['frais_appliques'], 0, ',', ' ') ?> Ar</td>
-                        <td><?= esc($ligne['statut']) ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </tbody>
-    </table>
-
-    <a href="<?= site_url('client/solde') ?>" class="btn btn-link">Retour</a>
+    <?php endforeach; ?>
 </div>
 
 <?= $this->endSection() ?>
