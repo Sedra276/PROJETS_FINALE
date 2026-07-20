@@ -15,6 +15,9 @@ use CodeIgniter\Filters\SecureHeaders;
 
 class Filters extends BaseFilters
 {
+
+
+    
     /**
      * Configures aliases for Filter classes to
      * make reading things nicer and simpler.
@@ -34,6 +37,7 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
+        'authOperateur' => \App\Filters\AuthOperateurFilter::class,
     ];
 
     /**

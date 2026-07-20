@@ -100,9 +100,9 @@ INSERT INTO operateur_config (prefixe, libelle, actif) VALUES
     ('033', 'Operateur A', 1),
     ('037', 'Operateur B', 1);
 
--- Un admin par defaut (mot de passe a hacher cote application avant insertion reelle)
+-- Un admin par defaut (mot de passe en clair, pas de hachage - simplification v1)
 INSERT INTO utilisateur (nom, login, mot_de_passe, role) VALUES
-    ('Admin', 'admin', '$2y$10$CHANGEZ_CE_HASH', 'ADMIN');
+    ('Admin', 'admin', 'admin123', 'ADMIN');
 
 -- Types d'operation (ids : 1=DEPOT, 2=RETRAIT, 3=TRANSFERT)
 INSERT INTO type_operation (code, libelle) VALUES
