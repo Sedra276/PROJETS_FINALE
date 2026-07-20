@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\ClientModel;
 use App\Models\OperationModel;
 use App\Models\OperateurConfigModel;
-use App\Models\CommissionInteropModel;
+use App\Models\CommissionInteroperateurModel;
 use App\Libraries\FraisCalculatorService;
 
 class Transfert extends BaseController
@@ -33,21 +33,19 @@ class Transfert extends BaseController
         $modeleClient = new ClientModel();
         $modeleOperateur = new OperateurConfigModel();
         $source = $modeleClient->find(session()->get('client_id'));
-        
-        // Détection opérateur du destinataire
+
         $infoOperateurDest = $modeleOperateur->determinerOperateur($numeroDestinataire);
-        
+
         if ($infoOperateurDest['operateur'] === null) {
             return redirect()->back()->with('erreur', 'Prefixe du destinataire invalide');
         }
 
-        // Détection opérateur source (notre opérateur)
         $infoOperateurSource = $modeleOperateur->determinerOperateur($source['numero_telephone']);
 
         $destination = $modeleClient->rechercherParNumero($numeroDestinataire);
 
         if ($destination === null) {
-            // Créer le compte si c'est un opérateur externe
+
             if (!$infoOperateurDest['est_interne']) {
                 $destination = $modeleClient->creerClient($numeroDestinataire);
             } else {
@@ -60,23 +58,21 @@ class Transfert extends BaseController
         }
 
         $calculateurFrais = new FraisCalculatorService();
-        // Les frais sont calculés selon l'opérateur SOURCE (notre opérateur)
-        $fraisTransfert = $calculateurFrais->calculerFrais(3, $infoOperateurSource['operateur']['id'], $montant);
 
-        // Calcul des frais de retrait inclus si demandé
         $montantFraisRetraitInclus = 0;
         if ($fraisRetraitInclus) {
             $montantFraisRetraitInclus = $calculateurFrais->calculerFrais(2, $infoOperateurSource['operateur']['id'], $montant);
         }
 
-        // Calcul commission interopérateur
-        $commissionInterop = 0;
+        $fraisAppliques = 0;
         if (!$infoOperateurDest['est_interne']) {
-            $modeleCommission = new CommissionInteropModel();
-            $commissionInterop = $modeleCommission->calculerCommission($infoOperateurDest['operateur']['id'], $montant);
+            $modeleCommission = new CommissionInteroperateurModel();
+            $fraisAppliques = $modeleCommission->calculerCommission($infoOperateurDest['operateur']['id'], $montant);
+        } else {
+            $fraisAppliques = $calculateurFrais->calculerFrais(3, $infoOperateurSource['operateur']['id'], $montant);
         }
 
-        $total = $montant + $fraisTransfert + $montantFraisRetraitInclus + $commissionInterop;
+        $total = $montant + $fraisAppliques + $montantFraisRetraitInclus;
 
         if ($source['solde'] < $total) {
             return redirect()->back()->with('erreur', 'Solde insuffisant');
@@ -101,7 +97,7 @@ class Transfert extends BaseController
             'id_client_source' => $source['id'],
             'id_client_destination' => $destination['id'],
             'montant' => $montant,
-            'frais_appliques' => $fraisTransfert,
+            'frais_appliques' => $fraisAppliques,
             'solde_avant_source' => $soldeAvantSource,
             'solde_apres_source' => $soldeApresSource,
             'solde_avant_destination' => $soldeAvantDestination,
@@ -114,6 +110,10 @@ class Transfert extends BaseController
         $modeleOperation->enregistrerOperation($donneesOperation);
 
         $db->transComplete();
+
+        if ($db->transStatus() === false) {
+            return redirect()->back()->with('erreur', 'Erreur lors du transfert');
+        }
 
         return redirect()->to('/client/solde')->with('succes', 'Transfert effectue');
     }

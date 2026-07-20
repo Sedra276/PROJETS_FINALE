@@ -14,14 +14,12 @@ class TypesOperations extends BaseController
         $this->typeOperationModel = new TypeOperationModel();
     }
 
-    /** GET /admin/types-operations - liste les types d'operation. */
     public function listerTypesOperation()
     {
         $types = $this->typeOperationModel->findAll();
         return view('operateur/types_operations/liste', ['types' => $types]);
     }
 
-    /** GET /admin/types-operations/{id}/modifier - formulaire d'edition du libelle. */
     public function modifierTypeOperation(int $id)
     {
         $type = $this->typeOperationModel->find($id);
@@ -31,11 +29,6 @@ class TypesOperations extends BaseController
         return view('operateur/types_operations/formulaire', ['type' => $type]);
     }
 
-    /**
-     * POST /admin/types-operations/{id}
-     * Le "code" (DEPOT/RETRAIT/TRANSFERT) n'est JAMAIS modifiable : c'est un
-     * referentiel fixe. Seul le libelle affiche peut etre change.
-     */
     public function enregistrerModificationTypeOperation(int $id)
     {
         $libelle = $this->request->getPost('libelle');

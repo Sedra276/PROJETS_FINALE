@@ -9,7 +9,7 @@ class Solde extends BaseController
     public function voirSolde()
     {
         $clientId = session()->get('client_id');
-        
+
         if ($clientId === null) {
             return redirect()->to('/client/connexion')->with('erreur', 'Veuillez vous connecter');
         }

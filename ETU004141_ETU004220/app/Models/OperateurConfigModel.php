@@ -26,13 +26,11 @@ class OperateurConfigModel extends Model
         ],
     ];
 
-    /** Renvoie uniquement les prefixes actifs (utilise par le Binome 2 pour valider un numero). */
     public function listerPrefixesActifs(): array
     {
         return $this->where('actif', 1)->findAll();
     }
 
-    /** Verifie si un numero de telephone commence par un prefixe actif connu. */
     public function numeroRespectePrefixeValide(string $numeroTelephone): bool
     {
         foreach ($this->listerPrefixesActifs() as $prefixeConfig) {
@@ -56,11 +54,6 @@ class OperateurConfigModel extends Model
         return false;
     }
 
-    /**
-     * (V2) Liste des operateurs externes actifs (est_notre_operateur = 0),
-     * utilisee pour peupler le formulaire de configuration des commissions
-     * interoperateur : seuls les operateurs externes peuvent avoir une commission.
-     */
     public function listerOperateursExternesActifs(): array
     {
         return $this->where('est_notre_operateur', 0)
@@ -69,18 +62,11 @@ class OperateurConfigModel extends Model
             ->findAll();
     }
 
-    /** (V2) Renvoie notre operateur (celui marque est_notre_operateur = 1), s'il existe. */
     public function trouverNotreOperateur(): ?array
     {
         return $this->where('est_notre_operateur', 1)->first();
     }
 
-    /**
-     * (V2) Indique si le prefixe donne correspond a un operateur EXTERNE
-     * (actif, connu, et different de notre operateur). Utilise par le
-     * Binome 2 pour decider si une commission interoperateur s'applique
-     * lors d'un transfert.
-     */
     public function estPrefixeExterne(string $numeroTelephoneDestinataire): bool
     {
         foreach ($this->where('actif', 1)->findAll() as $operateur) {
@@ -89,9 +75,7 @@ class OperateurConfigModel extends Model
             }
         }
         return false;}
-    /*Détermine si un numéro de téléphone appartient à notre opérateur ou à un opérateur externe
-     * @return array ['est_interne' => bool, 'operateur' => array|null]
-     */
+
     public function determinerOperateur(string $numero): array
     {
         $prefixes = $this->where('actif', 1)->findAll();

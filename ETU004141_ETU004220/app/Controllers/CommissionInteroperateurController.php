@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\Models\CommissionInteroperateurModel;
 use App\Models\OperateurConfigModel;
 
-
 class CommissionInteroperateurController extends BaseController
 {
     protected CommissionInteroperateurModel $commissionModel;
@@ -17,7 +16,6 @@ class CommissionInteroperateurController extends BaseController
         $this->operateurConfigModel = new OperateurConfigModel();
     }
 
-    /** Liste des commissions interoperateur configurees. */
     public function index()
     {
         return view('commission_interoperateur/index', [
@@ -25,7 +23,6 @@ class CommissionInteroperateurController extends BaseController
         ]);
     }
 
-    /** Formulaire de creation. */
     public function create()
     {
         return view('commission_interoperateur/form', [
@@ -35,7 +32,6 @@ class CommissionInteroperateurController extends BaseController
         ]);
     }
 
-    /** Enregistrement d'une nouvelle commission. */
     public function store()
     {
         $donnees = [
@@ -62,7 +58,6 @@ class CommissionInteroperateurController extends BaseController
             ->with('message', "Commission interoperateur creee.");
     }
 
-    /** Formulaire de modification. */
     public function edit(int $id)
     {
         $commission = $this->commissionModel->find($id);
@@ -78,7 +73,6 @@ class CommissionInteroperateurController extends BaseController
         ]);
     }
 
-    /** Mise a jour d'une commission existante. */
     public function update(int $id)
     {
         $commission = $this->commissionModel->find($id);
@@ -111,7 +105,6 @@ class CommissionInteroperateurController extends BaseController
             ->with('message', "Commission interoperateur modifiee.");
     }
 
-    /** Active / desactive une commission (jamais de suppression physique). */
     public function toggleActif(int $id)
     {
         $this->commissionModel->basculerActif($id);

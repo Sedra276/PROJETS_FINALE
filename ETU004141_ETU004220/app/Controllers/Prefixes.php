@@ -14,20 +14,17 @@ class Prefixes extends BaseController
         $this->operateurConfigModel = new OperateurConfigModel();
     }
 
-    /** GET /admin/prefixes - liste tous les prefixes. */
     public function listerPrefixes()
     {
         $prefixes = $this->operateurConfigModel->orderBy('prefixe', 'ASC')->findAll();
         return view('operateur/prefixes/liste', ['prefixes' => $prefixes]);
     }
 
-    /** GET /admin/prefixes/nouveau - formulaire de creation. */
     public function nouveauPrefixe()
     {
         return view('operateur/prefixes/formulaire', ['prefixe' => null]);
     }
 
-    /** POST /admin/prefixes - enregistre un nouveau prefixe. */
     public function creerPrefixe()
     {
         $donnees = [
@@ -44,7 +41,6 @@ class Prefixes extends BaseController
         return redirect()->to('/admin/prefixes')->with('succes', 'Prefixe cree.');
     }
 
-    /** GET /admin/prefixes/{id}/modifier - formulaire d'edition. */
     public function modifierPrefixe(int $id)
     {
         $prefixe = $this->operateurConfigModel->find($id);
@@ -54,7 +50,6 @@ class Prefixes extends BaseController
         return view('operateur/prefixes/formulaire', ['prefixe' => $prefixe]);
     }
 
-    /** POST /admin/prefixes/{id} - enregistre la modification. */
     public function enregistrerModificationPrefixe(int $id)
     {
         $donnees = [
@@ -75,11 +70,6 @@ class Prefixes extends BaseController
         return redirect()->to('/admin/prefixes')->with('succes', 'Prefixe modifie.');
     }
 
-    /**
-     * POST /admin/prefixes/{id}/activer-desactiver
-     * Bascule le statut actif/inactif. Jamais de suppression physique
-     * (un prefixe peut deja etre reference logiquement par des clients).
-     */
     public function activerDesactiverPrefixe(int $id)
     {
         $prefixe = $this->operateurConfigModel->find($id);

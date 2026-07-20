@@ -93,19 +93,16 @@ class OperationModel extends Model
         return $builder->get()->getResultArray();
     }
 
-    /**
-     * Récupère l'historique groupé par lot d'envoi
-     */
     public function historiqueParClientGroupe(int $idClient, ?string $codeType = null): array
     {
         $operations = $this->historiqueParClient($idClient, $codeType);
-        
+
         $groupeParLot = [];
         foreach ($operations as $operation) {
             $idLot = $operation['id_lot_envoi'] ?? null;
-            
+
             if ($idLot !== null) {
-                // Opération faisant partie d'un lot
+
                 if (!isset($groupeParLot[$idLot])) {
                     $groupeParLot[$idLot] = [
                         'type' => 'lot',
@@ -116,7 +113,7 @@ class OperationModel extends Model
                 }
                 $groupeParLot[$idLot]['operations'][] = $operation;
             } else {
-                // Opération individuelle
+
                 $groupeParLot[] = [
                     'type' => 'individuelle',
                     'operation' => $operation

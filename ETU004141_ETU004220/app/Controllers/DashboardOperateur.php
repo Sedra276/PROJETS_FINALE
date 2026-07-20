@@ -16,7 +16,6 @@ class DashboardOperateur extends BaseController
         $this->clientModel    = new ClientModel();
     }
 
-    /** GET /admin/gains - "Situation gain" : frais percus par type d'operation. */
     public function afficherGains()
     {
         $dateDebut = $this->request->getGet('date_debut');
@@ -31,14 +30,12 @@ class DashboardOperateur extends BaseController
         ]);
     }
 
-    /** GET /admin/comptes-clients - "Situation des comptes clients", lecture seule. */
     public function afficherComptesClients()
     {
         $comptes = $this->clientModel->listerTousLesComptes();
         return view('operateur/dashboard/comptes_clients', ['comptes' => $comptes]);
     }
 
-    /** GET /admin/montants-operateurs - "Situation des montants à envoyer à chaque opérateur" */
     public function afficherMontantsAEnvoyer()
     {
         $dateDebut = $this->request->getGet('date_debut');

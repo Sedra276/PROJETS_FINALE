@@ -90,73 +90,73 @@
 
 ### Base de donnees - a ajouter dans base.sql
 
-- [ ] operateur_config : champ est_notre_operateur (booleen) pour distinguer notre operateur des operateurs externes (Orange, Airtel, Telma)
-- [ ] Nouvelle table commission_interoperateur : id, id_operateur_config (operateur destination), pourcentage, actif -> commission additionnelle appliquee uniquement si le transfert sort vers un operateur externe
-- [ ] operation : champ frais_retrait_inclus (booleen) et montant_frais_retrait_inclus, pour un transfert ou l'expediteur paie d'avance le futur retrait du destinataire
-- [ ] operation : champ id_lot_envoi (nullable) pour regrouper les operations issues d'un envoi multiple
+-[x]  operateur_config : champ est_notre_operateur (booleen) pour distinguer notre operateur des operateurs externes (Orange, Airtel, Telma)
+-[x]  Nouvelle table commission_interoperateur : id, id_operateur_config (operateur destination), pourcentage, actif -> commission additionnelle appliquee uniquement si le transfert sort vers un operateur externe
+-[x]  operation : champ frais_retrait_inclus (booleen) et montant_frais_retrait_inclus, pour un transfert ou l'expediteur paie d'avance le futur retrait du destinataire
+-[x]  operation : champ id_lot_envoi (nullable) pour regrouper les operations issues d'un envoi multiple
 
 ### ETU004141 - Cote operateur V2
 
 **Configuration multi-operateurs**
-- [ ] Ajouter les prefixes des autres operateurs (032 Orange, 031 Airtel, 034 Telma...)
-- [ ] Marquer un seul operateur comme est_notre_operateur = vrai, les autres = faux
-- [ ] Formulaire de configuration de commission_interoperateur par operateur externe (pourcentage)
-- [ ] Validation : pourcentage entre 0 et 100
-- [ ] La commission ne s'applique que si le prefixe destinataire est externe (033 vers 032 par exemple) ; un transfert interne (033 vers 037) reste au bareme normal sans commission
+-[x]  Ajouter les prefixes des autres operateurs (032 Orange, 031 Airtel, 034 Telma...)
+-[x]  Marquer un seul operateur comme est_notre_operateur = vrai, les autres = faux
+-[x]  Formulaire de configuration de commission_interoperateur par operateur externe (pourcentage)
+-[x]  Validation : pourcentage entre 0 et 100
+-[x]  La commission ne s'applique que si le prefixe destinataire est externe (033 vers 032 par exemple) ; un transfert interne (033 vers 037) reste au bareme normal sans commission
 
 **Dashboard gains V2**
-- [ ] Bloc "gains interne" : retraits + transferts internes uniquement
-- [ ] Bloc "autres operateurs" : total separe par operateur externe (Orange, Airtel, Telma chacun sa ligne), pas un seul total externe
-- [ ] Filtrable par periode
+-[x]  Bloc "gains interne" : retraits + transferts internes uniquement
+-[x]  Bloc "autres operateurs" : total separe par operateur externe (Orange, Airtel, Telma chacun sa ligne), pas un seul total externe
+-[x]  Filtrable par periode
 
 **Nouvelle page**
-- [ ] Page "Situation des montants a envoyer a chaque operateur"
-- [ ] Pour chaque transfert externe valide, cumuler le montant NET envoye (pas les frais/commission) par operateur destinataire
-- [ ] Affichage sous forme de tableau : operateur / montant total a reverser
-- [ ] Filtrable par periode
-- [ ] Lecture seule sur operation, aucune ecriture
+-[x]  Page "Situation des montants a envoyer a chaque operateur"
+-[x]  Pour chaque transfert externe valide, cumuler le montant NET envoye (pas les frais/commission) par operateur destinataire
+-[x]  Affichage sous forme de tableau : operateur / montant total a reverser
+-[x]  Filtrable par periode
+-[x]  Lecture seule sur operation, aucune ecriture
 
 ### ETU004220 - Cote client V2
 
 **Transfert - commission interoperateur**
-- [ ] Detecter si le prefixe du destinataire est interne ou externe (via operateur_config)
-- [ ] Si externe : ajouter la commission_interoperateur au montant du au bareme normal
-- [ ] Transaction SQL : debit source (montant + frais + commission si externe) + credit destination (montant net) + insertion operation, tout ou rien
+-[x]  Detecter si le prefixe du destinataire est interne ou externe (via operateur_config)
+-[x]  Si externe : ajouter la commission_interoperateur au montant du au bareme normal
+-[x]  Transaction SQL : debit source (montant + frais + commission si externe) + credit destination (montant net) + insertion operation, tout ou rien
 
 **Transfert - option frais de retrait inclus**
-- [ ] Case a cocher "inclure les frais de retrait" sur le formulaire de transfert
-- [ ] Si coche : calculer le frais de retrait applicable au destinataire via FraisCalculatorService et l'ajouter au montant debite chez l'expediteur
-- [ ] Le destinataire recoit le montant plein, sans frais a payer lors de son futur retrait (a tracer, ex: statut "frais retrait deja paye" sur l'operation ou sur le solde credite)
-- [ ] Enregistrer le detail complet sur l'operation (montant, frais transfert, commission si externe, frais retrait inclus)
-- [ ] Transaction SQL globale incluant tous ces montants, tout ou rien
+-[x]  Case a cocher "inclure les frais de retrait" sur le formulaire de transfert
+-[x]  Si coche : calculer le frais de retrait applicable au destinataire via FraisCalculatorService et l'ajouter au montant debite chez l'expediteur
+-[x]  Le destinataire recoit le montant plein, sans frais a payer lors de son futur retrait (a tracer, ex: statut "frais retrait deja paye" sur l'operation ou sur le solde credite)
+-[x]  Enregistrer le detail complet sur l'operation (montant, frais transfert, commission si externe, frais retrait inclus)
+-[x]  Transaction SQL globale incluant tous ces montants, tout ou rien
 
 **Transfert - envoi multiple**
-- [ ] Formulaire avec plusieurs couples (numero destinataire, montant)
-- [ ] Pour chaque destinataire, determiner interne/externe et calculer ses propres frais/commission individuellement (pas un frais global unique)
-- [ ] Calculer le debit total = somme des montants + somme des frais/commissions de chaque destinataire
-- [ ] Verifier le solde source suffisant sur ce total avant toute ecriture
-- [ ] Verifier que chaque destinataire existe et est different de la source
-- [ ] Transaction SQL unique : debit source une fois pour le total, credit chaque destinataire, insertion d'une operation par destinataire liee au meme id_lot_envoi, tout ou rien (si un seul destinataire est invalide, on annule tout le lot)
+-[x]  Formulaire avec plusieurs couples (numero destinataire, montant)
+-[x]  Pour chaque destinataire, determiner interne/externe et calculer ses propres frais/commission individuellement (pas un frais global unique)
+-[x]  Calculer le debit total = somme des montants + somme des frais/commissions de chaque destinataire
+-[x]  Verifier le solde source suffisant sur ce total avant toute ecriture
+-[x]  Verifier que chaque destinataire existe et est different de la source
+-[x]  Transaction SQL unique : debit source une fois pour le total, credit chaque destinataire, insertion d'une operation par destinataire liee au meme id_lot_envoi, tout ou rien (si un seul destinataire est invalide, on annule tout le lot)
 
 **Historique**
-- [ ] Regrouper l'affichage des operations partageant le meme id_lot_envoi (envoi multiple)
-- [ ] Afficher le detail par destinataire (numero, montant) dans le lot
+-[x]  Regrouper l'affichage des operations partageant le meme id_lot_envoi (envoi multiple)
+-[x]  Afficher le detail par destinataire (numero, montant) dans le lot
 
 ## Checklist livraison V2 (avant 17h10, tag v2)
 
 **ETU004141**
-- [ ] Config prefixes autres operateurs + marquage notre operateur
-- [ ] Commission interoperateur configurable par operateur externe
-- [ ] Situation gain separee (interne / par operateur externe)
-- [ ] Page situation des montants a envoyer a chaque operateur
+-[x]  Config prefixes autres operateurs + marquage notre operateur
+-[x]  Commission interoperateur configurable par operateur externe
+-[x]  Situation gain separee (interne / par operateur externe)
+-[x]  Page situation des montants a envoyer a chaque operateur
 
 **ETU004220**
-- [ ] Commission interoperateur appliquee sur transfert externe (transaction SQL)
-- [ ] Option frais de retrait inclus sur transfert (transaction SQL)
-- [ ] Envoi multiple avec calcul par destinataire (transaction SQL unique tout ou rien)
-- [ ] Historique groupe par lot d'envoi
+-[x]  Commission interoperateur appliquee sur transfert externe (transaction SQL)
+-[x]  Option frais de retrait inclus sur transfert (transaction SQL)
+-[x]  Envoi multiple avec calcul par destinataire (transaction SQL unique tout ou rien)
+-[x]  Historique groupe par lot d'envoi
 
 **Commun**
-- [ ] base.sql a jour avec les nouvelles tables/champs V2
-- [ ] Taches.md a jour
-- [ ] Tag v2 pousse avant 17h10
+-[x]  base.sql a jour avec les nouvelles tables/champs V2
+-[x]  Taches.md a jour
+-[x]  Tag v2 pousse avant 17h10

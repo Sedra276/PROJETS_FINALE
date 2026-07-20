@@ -17,7 +17,6 @@ class TypeOperationModel extends Model
         'libelle' => 'required|max_length[100]',
     ];
 
-    /** Recherche un type d'operation par son code (DEPOT, RETRAIT, TRANSFERT). */
     public function trouverParCode(string $code): ?array
     {
         return $this->where('code', $code)->first();

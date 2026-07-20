@@ -26,7 +26,6 @@ class Retrait extends BaseController
         $modeleOperateur = new OperateurConfigModel();
         $client = $modeleClient->find(session()->get('client_id'));
 
-        // Détection opérateur du client
         $infoOperateur = $modeleOperateur->determinerOperateur($client['numero_telephone']);
 
         $calculateurFrais = new FraisCalculatorService();
@@ -57,6 +56,10 @@ class Retrait extends BaseController
         ]);
 
         $db->transComplete();
+
+        if ($db->transStatus() === false) {
+            return redirect()->back()->with('erreur', 'Erreur lors du retrait');
+        }
 
         return redirect()->to('/client/solde')->with('succes', 'Retrait effectue');
     }

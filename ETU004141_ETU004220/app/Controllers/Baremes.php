@@ -19,7 +19,6 @@ class Baremes extends BaseController
         $this->operateurConfigModel = new OperateurConfigModel();
     }
 
-    /** GET /admin/baremes - liste les tranches, filtrable par type d'operation et par operateur. */
     public function listerBaremes()
     {
         $idTypeOperation   = $this->request->getGet('id_type_operation');
@@ -41,7 +40,6 @@ class Baremes extends BaseController
         ]);
     }
 
-    /** GET /admin/baremes/nouveau - formulaire de creation d'une tranche. */
     public function nouveauBareme()
     {
         $types      = $this->typeOperationModel->findAll();
@@ -49,13 +47,6 @@ class Baremes extends BaseController
         return view('operateur/baremes/formulaire', ['types' => $types, 'operateurs' => $operateurs]);
     }
 
-    /**
-     * POST /admin/baremes - enregistre une nouvelle tranche de frais.
-     * Regles metier : montant_min < montant_max, pas de chevauchement avec
-     * une tranche ACTIVE existante du MEME operateur, valeur >= 0, et si
-     * POURCENTAGE alors 0 <= valeur <= 100. Chaque operateur a son propre
-     * bareme : deux operateurs peuvent avoir des tranches qui se chevauchent.
-     */
     public function creerBareme()
     {
         $idTypeOperation   = (int) $this->request->getPost('id_type_operation');
@@ -91,12 +82,6 @@ class Baremes extends BaseController
         return redirect()->to('/admin/baremes')->with('succes', 'Tranche de frais creee.');
     }
 
-    /**
-     * POST /admin/baremes/{id}/desactiver
-     * Historise la tranche (date_fin_validite). Jamais de suppression
-     * physique : les operations passees restent coherentes avec le frais
-     * qui etait applique au moment ou elles ont ete faites.
-     */
     public function desactiverBareme(int $id)
     {
         $this->trancheFraisModel->desactiverTranche($id);

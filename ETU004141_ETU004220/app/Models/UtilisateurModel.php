@@ -18,11 +18,6 @@ class UtilisateurModel extends Model
         'role'  => 'required|in_list[ADMIN,AGENT]',
     ];
 
-    /**
-     * Verifie les identifiants de connexion.
-     * Mot de passe compare en clair (pas de hachage, simplification v1).
-     * Renvoie l'utilisateur (tableau) si valides, sinon null.
-     */
     public function verifierIdentifiants(string $login, string $motDePasseSaisi): ?array
     {
         $utilisateur = $this->where('login', $login)->first();
@@ -38,7 +33,6 @@ class UtilisateurModel extends Model
         return $utilisateur;
     }
 
-    /** Cree un utilisateur, mot de passe stocke en clair (simplification v1). */
     public function creerUtilisateur(string $nom, string $login, string $motDePasse, string $role): int|false
     {
         return $this->insert([
