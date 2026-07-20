@@ -13,13 +13,11 @@ class AuthOperateur extends BaseController
         $this->utilisateurModel = new UtilisateurModel();
     }
 
-    /** GET /admin/login - affiche le formulaire de connexion. */
     public function afficherFormulaireConnexion()
     {
         return view('operateur/login');
     }
 
-    /** POST /admin/login - traite la connexion. */
     public function connexion()
     {
         $login      = (string) $this->request->getPost('login');
@@ -40,7 +38,6 @@ class AuthOperateur extends BaseController
         return redirect()->to('/admin/gains');
     }
 
-    /** GET /admin/deconnexion - deconnecte l'agent/admin. */
     public function deconnexion()
     {
         session()->destroy();

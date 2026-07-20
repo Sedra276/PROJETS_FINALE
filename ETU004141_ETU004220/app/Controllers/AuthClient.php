@@ -20,10 +20,20 @@ class AuthClient extends BaseController
             return redirect()->back()->with('erreur', 'Numero obligatoire');
         }
 
-        $modeleOperateur = new OperateurConfigModel();
+        $telephoneLength = config('App')->telephoneLength;
+        if (strlen($numero) !== $telephoneLength || !ctype_digit($numero)) {
+            return redirect()->back()->with('erreur', "Le numero doit contenir exactement {$telephoneLength} chiffres");
+        }
 
-        if (!$modeleOperateur->prefixeEstValide($numero)) {
+        $modeleOperateur = new OperateurConfigModel();
+        $infoOperateur = $modeleOperateur->determinerOperateur($numero);
+
+        if ($infoOperateur['operateur'] === null) {
             return redirect()->back()->with('erreur', 'Prefixe invalide');
+        }
+
+        if (!$infoOperateur['est_interne']) {
+            return redirect()->back()->with('erreur', 'Connexion reservee aux clients de notre operateur uniquement');
         }
 
         $modeleClient = new ClientModel();

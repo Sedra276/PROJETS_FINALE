@@ -24,11 +24,6 @@ class TrancheFraisModel extends Model
         'valeur'              => 'required|numeric|greater_than_equal_to[0]',
     ];
 
-    /**
-     * Tranches actuellement actives (non historisees) pour un type
-     * d'operation ET un operateur donnes (chaque operateur a son propre
-     * bareme de frais).
-     */
     public function listerTranchesActives(int $idTypeOperation, int $idOperateurConfig): array
     {
         return $this->where('id_type_operation', $idTypeOperation)
@@ -38,7 +33,6 @@ class TrancheFraisModel extends Model
             ->findAll();
     }
 
-    /** Historique complet (actives + desactivees), filtrable par type d'operation et/ou operateur. */
     public function listerHistoriqueTranches(?int $idTypeOperation = null, ?int $idOperateurConfig = null): array
     {
         $builder = $this;
@@ -51,12 +45,6 @@ class TrancheFraisModel extends Model
         return $builder->orderBy('date_debut_validite', 'DESC')->findAll();
     }
 
-    /**
-     * Verifie qu'une nouvelle tranche [montantMin, montantMax] ne chevauche
-     * aucune tranche ACTIVE existante du meme type d'operation ET du meme
-     * operateur (deux operateurs differents peuvent avoir des tranches qui
-     * se chevauchent : leurs baremes sont independants, ce n'est pas un probleme).
-     */
     public function chevaucheTrancheActive(int $idTypeOperation, int $idOperateurConfig, float $montantMin, float $montantMax, ?int $idExclu = null): bool
     {
         foreach ($this->listerTranchesActives($idTypeOperation, $idOperateurConfig) as $tranche) {
@@ -72,11 +60,6 @@ class TrancheFraisModel extends Model
         return false;
     }
 
-    /**
-     * Desactive une tranche (historisation par date_fin_validite).
-     * Regle de maintenabilite : ne JAMAIS supprimer physiquement une tranche,
-     * sinon les operations passees perdent leur coherence avec le frais applique.
-     */
     public function desactiverTranche(int $idTranche): bool
     {
         return (bool) $this->update($idTranche, ['date_fin_validite' => date('Y-m-d H:i:s')]);

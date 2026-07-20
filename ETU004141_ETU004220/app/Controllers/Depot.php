@@ -44,6 +44,10 @@ class Depot extends BaseController
 
         $db->transComplete();
 
+        if ($db->transStatus() === false) {
+            return redirect()->back()->with('erreur', 'Erreur lors du depot');
+        }
+
         return redirect()->to('/client/solde')->with('succes', 'Depot effectue');
     }
 }

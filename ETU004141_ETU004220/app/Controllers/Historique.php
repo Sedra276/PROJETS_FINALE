@@ -9,7 +9,7 @@ class Historique extends BaseController
     public function voirHistorique()
     {
         $clientId = session()->get('client_id');
-        
+
         if ($clientId === null) {
             return redirect()->to('/client/connexion')->with('erreur', 'Veuillez vous connecter');
         }
@@ -17,7 +17,7 @@ class Historique extends BaseController
         $modeleOperation = new OperationModel();
         $codeType = $this->request->getGet('type');
 
-        $operations = $modeleOperation->historiqueParClient(
+        $operations = $modeleOperation->historiqueParClientGroupe(
             $clientId,
             $codeType ?: null
         );
