@@ -4,18 +4,31 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-
 class ClientModel extends Model
 {
-    protected $table         = 'client';
-    protected $primaryKey    = 'id';
-    protected $allowedFields = ['numero_telephone', 'nom', 'prenom', 'solde', 'statut', 'date_creation'];
-    protected $returnType    = 'array';
-    protected $useTimestamps = false;
+    protected $table = 'client';
+    protected $primaryKey = 'id';
+    protected $allowedFields = ['numero_telephone', 'nom', 'prenom', 'solde', 'statut'];
+    protected $returnType = 'array';
 
-    /** Utilise par le dashboard operateur : liste tous les comptes clients (lecture seule). */
-    public function listerTousLesComptes(): array
+    public function rechercherParNumero(string $numero)
     {
-        return $this->orderBy('date_creation', 'DESC')->findAll();
+        return $this->where('numero_telephone', $numero)->first();
+    }
+
+    public function creerClient(string $numero)
+    {
+        $this->insert([
+            'numero_telephone' => $numero,
+            'solde' => 0,
+            'statut' => 'ACTIF',
+        ]);
+
+        return $this->find($this->getInsertID());
+    }
+
+    public function mettreAJourSolde(int $id, float $nouveauSolde)
+    {
+        return $this->update($id, ['solde' => $nouveauSolde]);
     }
 }

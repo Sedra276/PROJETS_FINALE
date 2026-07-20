@@ -45,6 +45,53 @@ in SYSTEMPATH/Database/BaseConnection.php on line 606.
  5 APPPATH/Models/UtilisateurModel.php(27): CodeIgniter\BaseModel->first()
  6 APPPATH/Controllers/AuthOperateur.php(28): App\Models\UtilisateurModel->verifierIdentifiants()
  7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AuthOperateur->connexion()
+ERROR - 2026-07-20 07:37:55 --> Error connecting to the database: mysqli_sql_exception: No such file or directory in /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/MySQLi/Connection.php:201
+Stack trace:
+#0 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/MySQLi/Connection.php(201): mysqli->real_connect()
+#1 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect()
+#2 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/BaseModel.php(676): CodeIgniter\Model->doFindAll()
+#6 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/app/Models/OperateurConfigModel.php(16): CodeIgniter\BaseModel->findAll()
+#7 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/app/Controllers/AuthClient.php(25): App\Models\OperateurConfigModel->prefixeEstValide()
+#8 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(951): App\Controllers\AuthClient->connexion()
+#9 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#10 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#11 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#13 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#14 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/rewrite.php(44): require_once('...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No such file or directory in /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/MySQLi/Connection.php:231
+Stack trace:
+#0 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect()
+#1 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#3 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+#4 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/BaseModel.php(676): CodeIgniter\Model->doFindAll()
+#5 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/app/Models/OperateurConfigModel.php(16): CodeIgniter\BaseModel->findAll()
+#6 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/app/Controllers/AuthClient.php(25): App\Models\OperateurConfigModel->prefixeEstValide()
+#7 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(951): App\Controllers\AuthClient->connexion()
+#8 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#9 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#10 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#12 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#13 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/rewrite.php(44): require_once('...')
+#14 {main}
+CRITICAL - 2026-07-20 07:37:55 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No such file or directory
+[Method: POST, Route: client/connexion]
+in SYSTEMPATH/Database/BaseConnection.php on line 606.
+ 1 SYSTEMPATH/Database/BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 3 SYSTEMPATH/Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(676): CodeIgniter\Model->doFindAll()
+ 5 APPPATH/Models/OperateurConfigModel.php(16): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH/Controllers/AuthClient.php(25): App\Models\OperateurConfigModel->prefixeEstValide()
+ 7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AuthClient->connexion()
  8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
  9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
 10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
@@ -210,3 +257,180 @@ in SYSTEMPATH/Database/BaseConnection.php on line 606.
 11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
 12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 13 SYSTEMPATH/rewrite.php(44): require_once('/home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/public/index.php')
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/public/index.php')
+DEBUG - 2026-07-20 07:40:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-07-20 07:41:04 --> Error connecting to the database: Exception: Unable to open database: unable to open database file in /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/SQLite3/Connection.php:111
+Stack trace:
+#0 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/SQLite3/Connection.php(111): SQLite3->__construct()
+#1 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect()
+#2 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+#3 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+#4 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#5 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+#6 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/BaseModel.php(676): CodeIgniter\Model->doFindAll()
+#7 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/app/Models/OperateurConfigModel.php(16): CodeIgniter\BaseModel->findAll()
+#8 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/app/Controllers/AuthClient.php(25): App\Models\OperateurConfigModel->prefixeEstValide()
+#9 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(951): App\Controllers\AuthClient->connexion()
+#10 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#11 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#12 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#13 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#14 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#15 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/rewrite.php(44): require_once('...')
+#16 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: SQLite3 error: Unable to open database: unable to open database file in /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/SQLite3/Connection.php:118
+Stack trace:
+#0 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect()
+#1 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+#3 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/BaseModel.php(676): CodeIgniter\Model->doFindAll()
+#6 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/app/Models/OperateurConfigModel.php(16): CodeIgniter\BaseModel->findAll()
+#7 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/app/Controllers/AuthClient.php(25): App\Models\OperateurConfigModel->prefixeEstValide()
+#8 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(951): App\Controllers\AuthClient->connexion()
+#9 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#10 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#11 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#13 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#14 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/rewrite.php(44): require_once('...')
+#15 {main}
+CRITICAL - 2026-07-20 07:41:04 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [SQLite3]: SQLite3 error: Unable to open database: unable to open database file
+[Method: POST, Route: client/connexion]
+in SYSTEMPATH/Database/BaseConnection.php on line 606.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(676): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/OperateurConfigModel.php(16): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/AuthClient.php(25): App\Models\OperateurConfigModel->prefixeEstValide()
+ 8 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AuthClient->connexion()
+ 9 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+14 SYSTEMPATH/rewrite.php(44): require_once('/home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/public/index.php')
+DEBUG - 2026-07-20 07:45:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-07-20 07:45:22 --> Error connecting to the database: Exception: Unable to open database: unable to open database file in /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/SQLite3/Connection.php:111
+Stack trace:
+#0 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/SQLite3/Connection.php(111): SQLite3->__construct()
+#1 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect()
+#2 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+#3 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+#4 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#5 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+#6 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/BaseModel.php(676): CodeIgniter\Model->doFindAll()
+#7 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/app/Models/OperateurConfigModel.php(16): CodeIgniter\BaseModel->findAll()
+#8 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/app/Controllers/AuthClient.php(25): App\Models\OperateurConfigModel->prefixeEstValide()
+#9 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(951): App\Controllers\AuthClient->connexion()
+#10 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#11 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#12 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#13 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#14 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#15 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/rewrite.php(44): require_once('...')
+#16 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: SQLite3 error: Unable to open database: unable to open database file in /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/SQLite3/Connection.php:118
+Stack trace:
+#0 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect()
+#1 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+#3 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/BaseModel.php(676): CodeIgniter\Model->doFindAll()
+#6 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/app/Models/OperateurConfigModel.php(16): CodeIgniter\BaseModel->findAll()
+#7 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/app/Controllers/AuthClient.php(25): App\Models\OperateurConfigModel->prefixeEstValide()
+#8 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(951): App\Controllers\AuthClient->connexion()
+#9 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#10 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#11 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#13 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#14 /home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/system/rewrite.php(44): require_once('...')
+#15 {main}
+CRITICAL - 2026-07-20 07:45:22 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [SQLite3]: SQLite3 error: Unable to open database: unable to open database file
+[Method: POST, Route: client/connexion]
+in SYSTEMPATH/Database/BaseConnection.php on line 606.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(676): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/OperateurConfigModel.php(16): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/AuthClient.php(25): App\Models\OperateurConfigModel->prefixeEstValide()
+ 8 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AuthClient->connexion()
+ 9 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+14 SYSTEMPATH/rewrite.php(44): require_once('/home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/public/index.php')
+DEBUG - 2026-07-20 07:47:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-07-20 07:47:10 --> Error: Class "App\Models\ClientModel" not found
+[Method: POST, Route: client/connexion]
+in APPPATH/Controllers/AuthClient.php on line 29.
+ 1 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AuthClient->connexion()
+ 2 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 7 SYSTEMPATH/rewrite.php(44): require_once('/home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/public/index.php')
+DEBUG - 2026-07-20 07:47:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:47:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:47:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:47:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:47:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:47:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:47:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:47:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:47:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:48:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:48:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:48:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:48:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:48:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:48:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:48:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:48:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:48:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:48:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:48:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:48:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:48:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:48:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:48:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:49:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 07:49:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:04:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:04:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:04:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:04:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:04:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:04:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:04:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:05:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:05:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:05:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:05:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:05:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:05:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:05:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:06:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:06:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:06:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:06:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:08:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:15:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:15:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:15:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:15:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:15:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 08:15:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

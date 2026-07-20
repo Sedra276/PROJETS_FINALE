@@ -194,5 +194,10 @@ class Database extends Config
         if (ENVIRONMENT === 'testing') {
             $this->defaultGroup = 'tests';
         }
+
+        // Configure SQLite database path
+        if ($this->default['DBDriver'] === 'SQLite3' && empty($this->default['database'])) {
+            $this->default['database'] = APPPATH . '../writable/mobile_money.db';
+        }
     }
 }

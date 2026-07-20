@@ -4,29 +4,42 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-/**
- * NOTE IMPORTANTE : l'ECRITURE dans la table operation (depot, retrait,
- * transfert) appartient au Binome 2. Ce modele n'est utilise ici QUE pour
- * la lecture agregee des gains (dashboard operateur, Binome 1).
- * Si le Binome 2 a deja cree OperationModel.php, fusionnez les deux fichiers.
- */
 class OperationModel extends Model
 {
-    protected $table         = 'operation';
-    protected $primaryKey    = 'id';
+    protected $table = 'operation';
+    protected $primaryKey = 'id';
     protected $allowedFields = [
         'id_type_operation', 'id_client_source', 'id_client_destination', 'id_utilisateur',
         'montant', 'frais_appliques', 'solde_avant_source', 'solde_apres_source',
-        'solde_avant_destination', 'solde_apres_destination', 'date_operation', 'statut',
+        'solde_avant_destination', 'solde_apres_destination', 'statut',
     ];
-    protected $returnType    = 'array';
-    protected $useTimestamps = false;
+    protected $returnType = 'array';
 
-    /**
-     * Agrege les frais percus par type d'operation sur une periode donnee.
-     * Lecture seule : le dashboard operateur n'ecrit jamais dans cette table.
-     */
-    public function calculerGainsParType(?string $dateDebut = null, ?string $dateFin = null): array
+    public function enregistrerOperation(array $donnees)
+    {
+        $this->insert($donnees);
+        return $this->getInsertID();
+    }
+
+    public function historiqueParClient(int $idClient, ?string $codeType = null)
+{
+    $builder = $this
+        ->select('operation.*, type_operation.libelle AS type_libelle')
+        ->join('type_operation', 'type_operation.id = operation.id_type_operation')
+        ->groupStart()
+            ->where('id_client_source', $idClient)
+            ->orWhere('id_client_destination', $idClient)
+        ->groupEnd()
+        ->orderBy('date_operation', 'DESC');
+
+    if ($codeType !== null) {
+        $builder = $builder->where('type_operation.code', $codeType);
+    }
+
+    return $builder->findAll();
+}
+
+     public function calculerGainsParType(?string $dateDebut = null, ?string $dateFin = null): array
     {
         $builder = $this->db->table('operation o')
             ->select("t.libelle AS type_operation, COUNT(o.id) AS nombre_operations, SUM(o.frais_appliques) AS total_frais")
