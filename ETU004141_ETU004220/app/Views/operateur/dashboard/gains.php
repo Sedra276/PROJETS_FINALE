@@ -15,26 +15,32 @@
 
 <table class="table table-bordered align-middle">
     <thead>
-        <tr><th>Type d'operation</th><th>Nombre d'operations</th><th>Total des frais percus (Ar)</th></tr>
+        <tr>
+            <th>Type d'operation</th>
+            <th>Catégorie opérateur</th>
+            <th>Nombre d'operations</th>
+            <th>Total des frais percus (Ar)</th>
+        </tr>
     </thead>
     <tbody>
         <?php $totalGeneral = 0; ?>
         <?php foreach ($gains as $ligne): ?>
         <tr>
             <td><?= esc($ligne['type_operation']) ?></td>
+            <td><?= esc($ligne['categorie_operateur']) ?></td>
             <td><?= esc($ligne['nombre_operations']) ?></td>
             <td><?= number_format((float) $ligne['total_frais'], 0, ',', ' ') ?></td>
         </tr>
         <?php $totalGeneral += (float) $ligne['total_frais']; ?>
         <?php endforeach; ?>
         <?php if (empty($gains)): ?>
-        <tr><td colspan="3" class="text-center text-muted">Aucune operation sur cette periode.</td></tr>
+        <tr><td colspan="4" class="text-center text-muted">Aucune operation sur cette periode.</td></tr>
         <?php endif; ?>
     </tbody>
     <?php if (! empty($gains)): ?>
     <tfoot>
         <tr class="fw-bold">
-            <td colspan="2">Total general</td>
+            <td colspan="3">Total general</td>
             <td><?= number_format($totalGeneral, 0, ',', ' ') ?></td>
         </tr>
     </tfoot>

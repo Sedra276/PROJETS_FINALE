@@ -10,8 +10,8 @@
             </div>
             <div class="card-body">
                 <form action="<?= $commission
-                    ? site_url('commissions-interoperateur/modifier/' . $commission['id'])
-                    : site_url('commissions-interoperateur') ?>" method="post">
+                    ? site_url('admin/commissions-interoperateur/modifier/' . $commission['id'])
+                    : site_url('admin/commissions-interoperateur') ?>" method="post">
                     <?= csrf_field() ?>
 
                     <div class="mb-3">
@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="d-flex justify-content-end gap-2">
-                        <a href="<?= site_url('commissions-interoperateur') ?>" class="btn btn-secondary">Annuler</a>
+                        <a href="<?= site_url('admin/commissions-interoperateur') ?>" class="btn btn-secondary">Annuler</a>
                         <button type="submit" class="btn btn-primary"><?= $commission ? 'Enregistrer' : 'Creer' ?></button>
                     </div>
                 </form>

@@ -30,7 +30,16 @@ $routes->group('admin', ['filter' => 'authOperateur'], static function ($routes)
     $routes->post('baremes/(:num)/desactiver', 'Baremes::desactiverBareme/$1');
 
     $routes->get('gains', 'DashboardOperateur::afficherGains');
+    $routes->get('montants-operateurs', 'DashboardOperateur::afficherMontantsAEnvoyer');
     $routes->get('comptes-clients', 'DashboardOperateur::afficherComptesClients');
+
+    /* Commissions interopérateur */
+    $routes->get('commissions-interoperateur', 'CommissionInteroperateurController::index');
+    $routes->get('commissions-interoperateur/creer', 'CommissionInteroperateurController::create');
+    $routes->post('commissions-interoperateur', 'CommissionInteroperateurController::store');
+    $routes->get('commissions-interoperateur/modifier/(:num)', 'CommissionInteroperateurController::edit/$1');
+    $routes->post('commissions-interoperateur/modifier/(:num)', 'CommissionInteroperateurController::update/$1');
+    $routes->post('commissions-interoperateur/basculer/(:num)', 'CommissionInteroperateurController::toggleActif/$1');
 });
 
 $routes->get('client/connexion', 'AuthClient::formulaireConnexion');
@@ -50,12 +59,3 @@ $routes->group('client', ['filter' => 'clientAuth'], function ($routes) {
     $routes->get('historique', 'Historique::voirHistorique');
 });
 
-
-
-/*  v2*/ 
-$routes->get('commissions-interoperateur', 'CommissionInteroperateurController::index');
-$routes->get('commissions-interoperateur/creer', 'CommissionInteroperateurController::create');
-$routes->post('commissions-interoperateur', 'CommissionInteroperateurController::store');
-$routes->get('commissions-interoperateur/modifier/(:num)', 'CommissionInteroperateurController::edit/$1');
-$routes->post('commissions-interoperateur/modifier/(:num)', 'CommissionInteroperateurController::update/$1');
-$routes->post('commissions-interoperateur/basculer/(:num)', 'CommissionInteroperateurController::toggleActif/$1');
