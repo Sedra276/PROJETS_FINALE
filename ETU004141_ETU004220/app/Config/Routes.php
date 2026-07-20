@@ -5,7 +5,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
+$routes->get('/', 'client/connexion');
 
 
 $routes->get('admin/login', 'AuthOperateur::afficherFormulaireConnexion');
