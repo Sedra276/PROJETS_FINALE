@@ -20,6 +20,13 @@
             <div>
                 <div class="ligne-operation__type"><?= esc($ligne['type_libelle']) ?></div>
                 <div class="ligne-operation__date"><?= esc($ligne['date_operation']) ?></div>
+                <?php if ($ligne['type_libelle'] === 'Transfert'): ?>
+                    <?php if ($ligne['id_client_source'] == session()->get('client_id')): ?>
+                        <div class="ligne-operation__destinataire">Vers: <?= esc($ligne['numero_destination']) ?></div>
+                    <?php else: ?>
+                        <div class="ligne-operation__destinataire">De: <?= esc($ligne['numero_source']) ?></div>
+                    <?php endif; ?>
+                <?php endif; ?>
             </div>
             <div>
                 <div class="ligne-operation__montant"><?= number_format($ligne['montant'], 0, ',', ' ') ?> Ar</div>
