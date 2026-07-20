@@ -30,7 +30,7 @@ class Database extends Config
         'username'     => '',
         'password'     => '',
         'database'     => '',
-        'DBDriver'     => 'MySQLi',
+        'DBDriver'     => 'SQLite3',
         'DBPrefix'     => '',
         'pConnect'     => false,
         'DBDebug'      => true,
@@ -199,6 +199,11 @@ class Database extends Config
         // we don't overwrite live data on accident.
         if (ENVIRONMENT === 'testing') {
             $this->defaultGroup = 'tests';
+        }
+
+        // Configure SQLite database path
+        if ($this->default['DBDriver'] === 'SQLite3' && empty($this->default['database'])) {
+            $this->default['database'] = APPPATH . '../writable/mobile_money.db';
         }
     }
 }
