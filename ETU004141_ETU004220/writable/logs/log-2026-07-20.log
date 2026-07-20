@@ -671,3 +671,16 @@ DEBUG - 2026-07-20 09:56:31 --> Session: Class initialized using 'CodeIgniter\Se
 DEBUG - 2026-07-20 09:56:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2026-07-20 09:56:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2026-07-20 09:56:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-07-20 09:59:04 --> CodeIgniter\Router\Exceptions\RouterException: The namespace delimiter is a backslash (\), not a slash (/). Route handler: "\App\Controllers\client/connexion"
+[Method: GET, Route: /]
+in SYSTEMPATH/Router/Router.php on line 523.
+ 1 SYSTEMPATH/Router/Router.php(523): CodeIgniter\Router\Exceptions\RouterException::forInvalidControllerName()
+ 2 SYSTEMPATH/Router/Router.php(225): CodeIgniter\Router\Router->checkRoutes()
+ 3 SYSTEMPATH/CodeIgniter.php(829): CodeIgniter\Router\Router->handle()
+ 4 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 5 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 6 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 8 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 9 SYSTEMPATH/rewrite.php(44): require_once('/home/larissa/ITU/S4_ITU/Mr Rojo - SI/PROJETS_FINALE/ETU004141_ETU004220/public/index.php')
+DEBUG - 2026-07-20 10:00:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
