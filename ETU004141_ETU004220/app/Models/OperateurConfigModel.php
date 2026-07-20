@@ -41,4 +41,17 @@ class OperateurConfigModel extends Model
         }
         return false;
     }
+
+    public function prefixeEstValide(string $numero): bool
+    {
+        $prefixes = $this->where('actif', 1)->findAll();
+
+        foreach ($prefixes as $ligne) {
+            if (strpos($numero, $ligne['prefixe']) === 0) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
