@@ -4,7 +4,7 @@
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1>Commissions interoperateur</h1>
-    <a href="<?= site_url('commissions-interoperateur/creer') ?>" class="btn btn-primary">Ajouter une commission</a>
+    <a href="<?= site_url('admin/commissions-interoperateur/creer') ?>" class="btn btn-primary">Ajouter une commission</a>
 </div>
 
 <?php if (session()->getFlashdata('message')): ?>
@@ -42,8 +42,8 @@
                                 <?php endif; ?>
                             </td>
                             <td class="text-end align-middle">
-                                <a href="<?= site_url('commissions-interoperateur/modifier/' . $commission['id']) ?>" class="btn btn-sm btn-outline-primary">Modifier</a>
-                                <form action="<?= site_url('commissions-interoperateur/basculer/' . $commission['id']) ?>" method="post" style="display:inline;">
+                                <a href="<?= site_url('admin/commissions-interoperateur/modifier/' . $commission['id']) ?>" class="btn btn-sm btn-outline-primary">Modifier</a>
+                                <form action="<?= site_url('admin/commissions-interoperateur/basculer/' . $commission['id']) ?>" method="post" style="display:inline;">
                                     <?= csrf_field() ?>
                                     <?php if ($commission['actif']): ?>
                                         <button type="submit" class="btn btn-sm btn-outline-danger">Desactiver</button>

@@ -45,20 +45,20 @@ class CommissionInteroperateurController extends BaseController
         ];
 
         if (! $this->commissionModel->validate($donnees)) {
-            return redirect()->to(site_url('commissions-interoperateur/creer'))
+            return redirect()->to(site_url('admin/commissions-interoperateur/creer'))
                 ->with('erreurs', $this->commissionModel->errors())
                 ->withInput();
         }
 
         if ($donnees['actif'] && $this->commissionModel->existeCommissionActivePourOperateur($donnees['id_operateur_config'])) {
-            return redirect()->to(site_url('commissions-interoperateur/creer'))
+            return redirect()->to(site_url('admin/commissions-interoperateur/creer'))
                 ->with('erreurs', ['id_operateur_config' => "Une commission active existe deja pour cet operateur."])
                 ->withInput();
         }
 
         $this->commissionModel->insert($donnees);
 
-        return redirect()->to(site_url('commissions-interoperateur'))
+        return redirect()->to(site_url('admin/commissions-interoperateur'))
             ->with('message', "Commission interoperateur creee.");
     }
 
@@ -67,7 +67,7 @@ class CommissionInteroperateurController extends BaseController
     {
         $commission = $this->commissionModel->find($id);
         if ($commission === null) {
-            return redirect()->to(site_url('commissions-interoperateur'))
+            return redirect()->to(site_url('admin/commissions-interoperateur'))
                 ->with('erreurs', ['id' => "Commission introuvable."]);
         }
 
@@ -83,7 +83,7 @@ class CommissionInteroperateurController extends BaseController
     {
         $commission = $this->commissionModel->find($id);
         if ($commission === null) {
-            return redirect()->to(site_url('commissions-interoperateur'))
+            return redirect()->to(site_url('admin/commissions-interoperateur'))
                 ->with('erreurs', ['id' => "Commission introuvable."]);
         }
 
@@ -94,20 +94,20 @@ class CommissionInteroperateurController extends BaseController
         ];
 
         if (! $this->commissionModel->validate($donnees)) {
-            return redirect()->to(site_url('commissions-interoperateur/modifier/' . $id))
+            return redirect()->to(site_url('admin/commissions-interoperateur/modifier/' . $id))
                 ->with('erreurs', $this->commissionModel->errors())
                 ->withInput();
         }
 
         if ($donnees['actif'] && $this->commissionModel->existeCommissionActivePourOperateur($donnees['id_operateur_config'], $id)) {
-            return redirect()->to(site_url('commissions-interoperateur/modifier/' . $id))
+            return redirect()->to(site_url('admin/commissions-interoperateur/modifier/' . $id))
                 ->with('erreurs', ['id_operateur_config' => "Une commission active existe deja pour cet operateur."])
                 ->withInput();
         }
 
         $this->commissionModel->update($id, $donnees);
 
-        return redirect()->to(site_url('commissions-interoperateur'))
+        return redirect()->to(site_url('admin/commissions-interoperateur'))
             ->with('message', "Commission interoperateur modifiee.");
     }
 
@@ -116,6 +116,6 @@ class CommissionInteroperateurController extends BaseController
     {
         $this->commissionModel->basculerActif($id);
 
-        return redirect()->to(site_url('commissions-interoperateur'));
+        return redirect()->to(site_url('admin/commissions-interoperateur'));
     }
 }
