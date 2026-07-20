@@ -17,6 +17,13 @@ class ClientModel extends Model
     protected $primaryKey = 'id';
     protected $allowedFields = ['numero_telephone', 'nom', 'prenom', 'solde', 'statut'];
     protected $returnType = 'array';
+    protected $useTimestamps = false;
+
+   
+    public function listerTousLesComptes(): array
+    {
+        return $this->orderBy('date_creation', 'DESC')->findAll();
+    }
 
     public function rechercherParNumero(string $numero)
     {
