@@ -17,13 +17,23 @@
             <?php endforeach; ?>
         </select>
     </div>
+    <div class="col-auto">
+        <select name="id_operateur_config" class="form-select">
+            <option value="">Tous les operateurs</option>
+            <?php foreach ($operateurs as $operateur): ?>
+                <option value="<?= $operateur['id'] ?>" <?= (string) $idOperateurConfigSelectionne === (string) $operateur['id'] ? 'selected' : '' ?>>
+                    <?= esc($operateur['libelle']) ?> (<?= esc($operateur['prefixe']) ?>)
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </div>
     <div class="col-auto"><button class="btn btn-outline-secondary">Filtrer</button></div>
 </form>
 
 <table class="table table-bordered align-middle">
     <thead>
         <tr>
-            <th>Type</th><th>Montant min</th><th>Montant max</th><th>Type de calcul</th>
+            <th>Type</th><th>Operateur</th><th>Montant min</th><th>Montant max</th><th>Type de calcul</th>
             <th>Valeur</th><th>Debut validite</th><th>Fin validite</th><th>Statut</th><th>Actions</th>
         </tr>
     </thead>
@@ -32,6 +42,7 @@
         <?php $active = empty($tranche['date_fin_validite']); ?>
         <tr class="<?= $active ? '' : 'table-secondary' ?>">
             <td><?= esc($tranche['id_type_operation']) ?></td>
+            <td><?= esc($tranche['id_operateur_config']) ?></td>
             <td><?= esc($tranche['montant_min']) ?></td>
             <td><?= esc($tranche['montant_max']) ?></td>
             <td><?= esc($tranche['type_calcul']) ?></td>
@@ -56,7 +67,7 @@
         </tr>
         <?php endforeach; ?>
         <?php if (empty($tranches)): ?>
-        <tr><td colspan="9" class="text-center text-muted">Aucune tranche enregistree.</td></tr>
+        <tr><td colspan="10" class="text-center text-muted">Aucune tranche enregistree.</td></tr>
         <?php endif; ?>
     </tbody>
 </table>

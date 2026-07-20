@@ -20,13 +20,15 @@ class FraisCalculatorService
     }
 
     /**
-     * Calcule le frais applicable pour un type d'operation et un montant donnes.
+     * Calcule le frais applicable pour un type d'operation, un operateur
+     * (le bareme differe d'un operateur a l'autre) et un montant donnes.
      * Renvoie 0.0 si aucune tranche active ne correspond (cas du DEPOT).
      */
-    public function calculerFrais(int $idTypeOperation, float $montant): float
+    public function calculerFrais(int $idTypeOperation, int $idOperateurConfig, float $montant): float
     {
         $tranche = $this->trancheFraisModel
             ->where('id_type_operation', $idTypeOperation)
+            ->where('id_operateur_config', $idOperateurConfig)
             ->where('montant_min <=', $montant)
             ->where('montant_max >=', $montant)
             ->where('date_fin_validite', null)

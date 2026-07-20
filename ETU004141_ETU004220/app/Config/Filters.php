@@ -39,6 +39,7 @@ class Filters extends BaseFilters
         'performance'   => PerformanceMetrics::class,
         'authOperateur' => \App\Filters\AuthOperateurFilter::class,
         'clientAuth' => \App\Filters\ClientAuthFilter::class,
+            
     ];
 
     /**

@@ -138,3 +138,6 @@ INSERT INTO tranche_frais (id_type_operation, montant_min, montant_max, type_cal
 
 -- Le DEPOT (id=1) n'a volontairement aucune tranche_frais :
 -- FraisCalculatorService doit renvoyer 0 quand aucune tranche n'est trouvee.
+
+
+ALTER TABLE tranche_frais ADD COLUMN id_operateur_config INTEGER REFERENCES operateur_config(id);

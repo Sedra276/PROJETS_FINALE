@@ -13,6 +13,15 @@
             <?php endforeach; ?>
         </select>
     </div>
+    <div class="mb-3">
+        <label class="form-label">Operateur</label>
+        <select name="id_operateur_config" class="form-select" required>
+            <?php foreach ($operateurs as $operateur): ?>
+                <option value="<?= $operateur['id'] ?>"><?= esc($operateur['libelle']) ?> (<?= esc($operateur['prefixe']) ?>)</option>
+            <?php endforeach; ?>
+        </select>
+        <div class="form-text">Le bareme est specifique a cet operateur.</div>
+    </div>
     <div class="row">
         <div class="col mb-3">
             <label class="form-label">Montant min</label>
