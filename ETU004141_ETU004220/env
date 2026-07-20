@@ -14,7 +14,7 @@
 # ENVIRONMENT
 #--------------------------------------------------------------------
 
-# CI_ENVIRONMENT = production
+ CI_ENVIRONMENT = development
 
 #--------------------------------------------------------------------
 # APP
@@ -29,7 +29,8 @@
 #--------------------------------------------------------------------
 # DATABASE
 #--------------------------------------------------------------------
-
+database.default.DBDriver = SQLite3
+database.default.database = writable/mobile_money.db
 # database.default.hostname = localhost
 # database.default.database = ci4
 # database.default.username = root
@@ -67,3 +68,5 @@
 #--------------------------------------------------------------------
 
 # logger.threshold = 4
+
+
