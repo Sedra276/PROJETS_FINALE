@@ -47,3 +47,13 @@ $routes->group('client', ['filter' => 'clientAuth'], function ($routes) {
     $routes->post('transfert', 'Transfert::effectuerTransfert');
     $routes->get('historique', 'Historique::voirHistorique');
 });
+
+
+
+/*  v2*/ 
+$routes->get('commissions-interoperateur', 'CommissionInteroperateurController::index');
+$routes->get('commissions-interoperateur/creer', 'CommissionInteroperateurController::create');
+$routes->post('commissions-interoperateur', 'CommissionInteroperateurController::store');
+$routes->get('commissions-interoperateur/modifier/(:num)', 'CommissionInteroperateurController::edit/$1');
+$routes->post('commissions-interoperateur/modifier/(:num)', 'CommissionInteroperateurController::update/$1');
+$routes->post('commissions-interoperateur/basculer/(:num)', 'CommissionInteroperateurController::toggleActif/$1');
