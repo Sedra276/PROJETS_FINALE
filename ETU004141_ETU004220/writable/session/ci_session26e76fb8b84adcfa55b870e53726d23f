@@ -1,1 +1,1 @@
-__ci_last_regenerate|i:1784552658;_ci_previous_url|s:58:"http://localhost:8080/index.php/commissions-interoperateur";operateur_id|i:1;operateur_nom|s:5:"Admin";operateur_role|s:5:"ADMIN";__ci_vars|a:0:{}
+__ci_last_regenerate|i:1784552658;_ci_previous_url|s:48:"http://localhost:8080/index.php/client/transfert";operateur_id|i:1;operateur_nom|s:5:"Admin";operateur_role|s:5:"ADMIN";client_id|i:1;client_numero|s:10:"0330315100";erreur|s:24:"Destinataire introuvable";__ci_vars|a:1:{s:6:"erreur";s:3:"old";}
