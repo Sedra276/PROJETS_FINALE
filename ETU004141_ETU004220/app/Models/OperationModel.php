@@ -12,6 +12,7 @@ class OperationModel extends Model
         'id_type_operation', 'id_client_source', 'id_client_destination', 'id_utilisateur',
         'montant', 'frais_appliques', 'solde_avant_source', 'solde_apres_source',
         'solde_avant_destination', 'solde_apres_destination', 'statut',
+        'frais_retrait_inclus', 'montant_frais_retrait_inclus', 'id_lot_envoi',
     ];
     protected $returnType = 'array';
 
@@ -59,5 +60,39 @@ class OperationModel extends Model
         }
 
         return $builder->get()->getResultArray();
+    }
+
+    /**
+     * Récupère l'historique groupé par lot d'envoi
+     */
+    public function historiqueParClientGroupe(int $idClient, ?string $codeType = null): array
+    {
+        $operations = $this->historiqueParClient($idClient, $codeType);
+        
+        $groupeParLot = [];
+        foreach ($operations as $operation) {
+            $idLot = $operation['id_lot_envoi'] ?? null;
+            
+            if ($idLot !== null) {
+                // Opération faisant partie d'un lot
+                if (!isset($groupeParLot[$idLot])) {
+                    $groupeParLot[$idLot] = [
+                        'type' => 'lot',
+                        'id_lot' => $idLot,
+                        'date_operation' => $operation['date_operation'],
+                        'operations' => []
+                    ];
+                }
+                $groupeParLot[$idLot]['operations'][] = $operation;
+            } else {
+                // Opération individuelle
+                $groupeParLot[] = [
+                    'type' => 'individuelle',
+                    'operation' => $operation
+                ];
+            }
+        }
+
+        return $groupeParLot;
     }
 }

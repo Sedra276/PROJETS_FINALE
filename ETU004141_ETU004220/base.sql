@@ -139,5 +139,68 @@ INSERT INTO tranche_frais (id_type_operation, montant_min, montant_max, type_cal
 -- Le DEPOT (id=1) n'a volontairement aucune tranche_frais :
 -- FraisCalculatorService doit renvoyer 0 quand aucune tranche n'est trouvee.
 
-
 ALTER TABLE tranche_frais ADD COLUMN id_operateur_config INTEGER REFERENCES operateur_config(id);
+
+-- ============================================================
+-- ============================================================
+-- MOBILE MONEY - VERSION 2
+-- Ajouts multi-operateurs, commission interoperateur,
+-- frais de retrait inclus, envoi multiple (lot)
+-- ============================================================
+-- ============================================================
+
+-- ------------------------------------------------------------
+-- === BINOME 1 - COTE OPERATEUR (multi-operateurs) ===
+-- ------------------------------------------------------------
+
+-- Distinguer notre operateur des operateurs externes (Orange, Airtel, Telma)
+ALTER TABLE operateur_config ADD COLUMN est_notre_operateur INTEGER NOT NULL DEFAULT 0 CHECK (est_notre_operateur IN (0,1));
+
+-- COMMISSION_INTEROPERATEUR : commission additionnelle appliquee uniquement
+-- quand le transfert sort vers un operateur externe (id_operateur_config = operateur destination)
+CREATE TABLE IF NOT EXISTS commission_interoperateur (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_operateur_config INTEGER NOT NULL,
+    pourcentage REAL NOT NULL CHECK (pourcentage >= 0 AND pourcentage <= 100),
+    actif INTEGER NOT NULL DEFAULT 1 CHECK (actif IN (0,1)),
+    FOREIGN KEY (id_operateur_config) REFERENCES operateur_config(id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_commission_interop_operateur ON commission_interoperateur(id_operateur_config);
+
+-- ------------------------------------------------------------
+-- === BINOME 2 - COTE CLIENT (operation : nouveaux champs) ===
+-- ------------------------------------------------------------
+
+-- Frais de retrait inclus par l'expediteur au moment du transfert
+ALTER TABLE operation ADD COLUMN frais_retrait_inclus INTEGER NOT NULL DEFAULT 0 CHECK (frais_retrait_inclus IN (0,1));
+ALTER TABLE operation ADD COLUMN montant_frais_retrait_inclus REAL NOT NULL DEFAULT 0;
+
+-- Regroupement des operations issues d'un envoi multiple (meme lot)
+ALTER TABLE operation ADD COLUMN id_lot_envoi TEXT;
+
+CREATE INDEX IF NOT EXISTS idx_operation_lot_envoi ON operation(id_lot_envoi);
+
+-- Traçabilite "frais de retrait deja paye" sur le compte destinataire :
+-- une operation de retrait qui beneficie d'un frais deja paye a l'avance
+-- doit pouvoir etre identifiee. On reutilise frais_appliques = 0 sur ce retrait,
+-- avec une reference vers l'operation de transfert d'origine :
+ALTER TABLE operation ADD COLUMN id_operation_frais_retrait_origine INTEGER REFERENCES operation(id);
+
+-- ------------------------------------------------------------
+-- === DONNEES V2 (seed) ===
+-- ------------------------------------------------------------
+
+-- Marquer notre operateur (033) comme etant le notre, les autres restent externes
+UPDATE operateur_config SET est_notre_operateur = 1 WHERE prefixe = '033';
+
+-- Ajout des prefixes des operateurs externes (Orange, Airtel, Telma)
+INSERT INTO operateur_config (prefixe, libelle, actif, est_notre_operateur) VALUES
+    ('032', 'Orange', 1, 0),
+    ('031', 'Airtel', 1, 0),
+    ('034', 'Telma', 1, 0);
+
+-- Commission interoperateur par operateur externe (exemple : 2%)
+-- id_operateur_config correspond a l'operateur EXTERNE de destination
+INSERT INTO commission_interoperateur (id_operateur_config, pourcentage, actif)
+SELECT id, 2.0, 1 FROM operateur_config WHERE prefixe IN ('032', '031', '034');

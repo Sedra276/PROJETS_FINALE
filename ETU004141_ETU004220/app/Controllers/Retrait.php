@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\ClientModel;
 use App\Models\OperationModel;
+use App\Models\OperateurConfigModel;
 use App\Libraries\FraisCalculatorService;
 
 class Retrait extends BaseController
@@ -22,10 +23,14 @@ class Retrait extends BaseController
         }
 
         $modeleClient = new ClientModel();
+        $modeleOperateur = new OperateurConfigModel();
         $client = $modeleClient->find(session()->get('client_id'));
 
+        // Détection opérateur du client
+        $infoOperateur = $modeleOperateur->determinerOperateur($client['numero_telephone']);
+
         $calculateurFrais = new FraisCalculatorService();
-        $frais = $calculateurFrais->calculerFrais(2, $montant);
+        $frais = $calculateurFrais->calculerFrais(2, $infoOperateur['operateur']['id'], $montant);
         $total = $montant + $frais;
 
         if ($client['solde'] < $total) {
