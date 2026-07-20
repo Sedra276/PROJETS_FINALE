@@ -1,0 +1,1 @@
+__ci_last_regenerate|i:1784532939;_ci_previous_url|s:43:"http://localhost:8080/index.php/admin/login";_ci_old_input|a:2:{s:3:"get";a:0:{}s:4:"post";a:3:{s:14:"csrf_test_name";s:32:"a9d63e4eda4d45efe827931c2f7de712";s:5:"login";s:5:"Admin";s:12:"mot_de_passe";s:5:"admin";}}__ci_vars|a:2:{s:13:"_ci_old_input";s:3:"old";s:6:"erreur";s:3:"old";}erreur|s:24:"Identifiants incorrects.";

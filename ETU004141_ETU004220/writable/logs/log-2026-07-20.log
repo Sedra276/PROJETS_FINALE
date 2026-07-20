@@ -1,0 +1,212 @@
+ERROR - 2026-07-20 07:24:42 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'root'@'localhost' in /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/MySQLi/Connection.php:201
+Stack trace:
+#0 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/MySQLi/Connection.php(201): mysqli->real_connect()
+#1 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect()
+#2 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Model.php(295): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/BaseModel.php(714): CodeIgniter\Model->doFirst()
+#6 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/app/Models/UtilisateurModel.php(27): CodeIgniter\BaseModel->first()
+#7 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/app/Controllers/AuthOperateur.php(28): App\Models\UtilisateurModel->verifierIdentifiants()
+#8 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(951): App\Controllers\AuthOperateur->connexion()
+#9 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#10 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#11 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#13 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#14 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/rewrite.php(44): require_once('...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' in /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/MySQLi/Connection.php:231
+Stack trace:
+#0 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect()
+#1 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#3 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Model.php(295): CodeIgniter\Database\BaseBuilder->get()
+#4 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/BaseModel.php(714): CodeIgniter\Model->doFirst()
+#5 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/app/Models/UtilisateurModel.php(27): CodeIgniter\BaseModel->first()
+#6 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/app/Controllers/AuthOperateur.php(28): App\Models\UtilisateurModel->verifierIdentifiants()
+#7 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(951): App\Controllers\AuthOperateur->connexion()
+#8 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#9 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#10 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#12 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#13 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/rewrite.php(44): require_once('...')
+#14 {main}
+CRITICAL - 2026-07-20 07:24:42 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost'
+[Method: POST, Route: admin/login]
+in SYSTEMPATH/Database/BaseConnection.php on line 606.
+ 1 SYSTEMPATH/Database/BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 3 SYSTEMPATH/Model.php(295): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(714): CodeIgniter\Model->doFirst()
+ 5 APPPATH/Models/UtilisateurModel.php(27): CodeIgniter\BaseModel->first()
+ 6 APPPATH/Controllers/AuthOperateur.php(28): App\Models\UtilisateurModel->verifierIdentifiants()
+ 7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AuthOperateur->connexion()
+ 8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/public/index.php')
+ERROR - 2026-07-20 07:24:50 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'root'@'localhost' in /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/MySQLi/Connection.php:201
+Stack trace:
+#0 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/MySQLi/Connection.php(201): mysqli->real_connect()
+#1 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect()
+#2 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Model.php(295): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/BaseModel.php(714): CodeIgniter\Model->doFirst()
+#6 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/app/Models/UtilisateurModel.php(27): CodeIgniter\BaseModel->first()
+#7 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/app/Controllers/AuthOperateur.php(28): App\Models\UtilisateurModel->verifierIdentifiants()
+#8 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(951): App\Controllers\AuthOperateur->connexion()
+#9 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#10 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#11 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#13 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#14 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/rewrite.php(44): require_once('...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' in /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/MySQLi/Connection.php:231
+Stack trace:
+#0 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect()
+#1 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#3 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Model.php(295): CodeIgniter\Database\BaseBuilder->get()
+#4 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/BaseModel.php(714): CodeIgniter\Model->doFirst()
+#5 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/app/Models/UtilisateurModel.php(27): CodeIgniter\BaseModel->first()
+#6 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/app/Controllers/AuthOperateur.php(28): App\Models\UtilisateurModel->verifierIdentifiants()
+#7 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(951): App\Controllers\AuthOperateur->connexion()
+#8 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#9 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#10 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#12 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#13 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/rewrite.php(44): require_once('...')
+#14 {main}
+CRITICAL - 2026-07-20 07:24:50 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost'
+[Method: POST, Route: admin/login]
+in SYSTEMPATH/Database/BaseConnection.php on line 606.
+ 1 SYSTEMPATH/Database/BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 3 SYSTEMPATH/Model.php(295): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(714): CodeIgniter\Model->doFirst()
+ 5 APPPATH/Models/UtilisateurModel.php(27): CodeIgniter\BaseModel->first()
+ 6 APPPATH/Controllers/AuthOperateur.php(28): App\Models\UtilisateurModel->verifierIdentifiants()
+ 7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AuthOperateur->connexion()
+ 8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/public/index.php')
+ERROR - 2026-07-20 07:26:04 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'root'@'localhost' in /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/MySQLi/Connection.php:201
+Stack trace:
+#0 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/MySQLi/Connection.php(201): mysqli->real_connect()
+#1 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect()
+#2 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Model.php(295): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/BaseModel.php(714): CodeIgniter\Model->doFirst()
+#6 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/app/Models/UtilisateurModel.php(27): CodeIgniter\BaseModel->first()
+#7 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/app/Controllers/AuthOperateur.php(28): App\Models\UtilisateurModel->verifierIdentifiants()
+#8 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(951): App\Controllers\AuthOperateur->connexion()
+#9 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#10 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#11 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#13 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#14 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/rewrite.php(44): require_once('...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' in /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/MySQLi/Connection.php:231
+Stack trace:
+#0 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect()
+#1 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#3 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Model.php(295): CodeIgniter\Database\BaseBuilder->get()
+#4 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/BaseModel.php(714): CodeIgniter\Model->doFirst()
+#5 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/app/Models/UtilisateurModel.php(27): CodeIgniter\BaseModel->first()
+#6 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/app/Controllers/AuthOperateur.php(28): App\Models\UtilisateurModel->verifierIdentifiants()
+#7 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(951): App\Controllers\AuthOperateur->connexion()
+#8 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#9 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#10 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#12 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#13 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/rewrite.php(44): require_once('...')
+#14 {main}
+CRITICAL - 2026-07-20 07:26:04 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost'
+[Method: POST, Route: admin/login]
+in SYSTEMPATH/Database/BaseConnection.php on line 606.
+ 1 SYSTEMPATH/Database/BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 3 SYSTEMPATH/Model.php(295): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(714): CodeIgniter\Model->doFirst()
+ 5 APPPATH/Models/UtilisateurModel.php(27): CodeIgniter\BaseModel->first()
+ 6 APPPATH/Controllers/AuthOperateur.php(28): App\Models\UtilisateurModel->verifierIdentifiants()
+ 7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AuthOperateur->connexion()
+ 8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/public/index.php')
+ERROR - 2026-07-20 07:29:47 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'root'@'localhost' in /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/MySQLi/Connection.php:201
+Stack trace:
+#0 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/MySQLi/Connection.php(201): mysqli->real_connect()
+#1 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect()
+#2 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Model.php(295): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/BaseModel.php(714): CodeIgniter\Model->doFirst()
+#6 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/app/Models/UtilisateurModel.php(27): CodeIgniter\BaseModel->first()
+#7 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/app/Controllers/AuthOperateur.php(28): App\Models\UtilisateurModel->verifierIdentifiants()
+#8 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(951): App\Controllers\AuthOperateur->connexion()
+#9 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#10 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#11 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#13 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#14 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/rewrite.php(44): require_once('...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' in /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/MySQLi/Connection.php:231
+Stack trace:
+#0 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect()
+#1 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#3 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Model.php(295): CodeIgniter\Database\BaseBuilder->get()
+#4 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/BaseModel.php(714): CodeIgniter\Model->doFirst()
+#5 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/app/Models/UtilisateurModel.php(27): CodeIgniter\BaseModel->first()
+#6 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/app/Controllers/AuthOperateur.php(28): App\Models\UtilisateurModel->verifierIdentifiants()
+#7 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(951): App\Controllers\AuthOperateur->connexion()
+#8 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#9 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#10 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#12 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#13 /home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/system/rewrite.php(44): require_once('...')
+#14 {main}
+CRITICAL - 2026-07-20 07:29:47 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost'
+[Method: POST, Route: admin/login]
+in SYSTEMPATH/Database/BaseConnection.php on line 606.
+ 1 SYSTEMPATH/Database/BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 3 SYSTEMPATH/Model.php(295): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(714): CodeIgniter\Model->doFirst()
+ 5 APPPATH/Models/UtilisateurModel.php(27): CodeIgniter\BaseModel->first()
+ 6 APPPATH/Controllers/AuthOperateur.php(28): App\Models\UtilisateurModel->verifierIdentifiants()
+ 7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AuthOperateur->connexion()
+ 8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/sedra/Documents/PROJETS_FINALE/ETU004141_ETU004220/public/index.php')
