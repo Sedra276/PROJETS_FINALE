@@ -679,3 +679,180 @@ body {
     margin-bottom: 26px;
     line-height: 1.5;
 }
+
+.lien-admin:hover {
+    background-color: rgba(255,199,44,0.2);
+    border-color: rgba(255,199,44,0.5);
+    color: var(--mm-texte);
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
+
+/* Mobile (default) - Already optimized in base styles */
+
+/* Tablette (768px - 1024px) */
+@media (min-width: 768px) {
+    .app-cadre {
+        max-width: 768px;
+    }
+    
+    .page-connexion__carte {
+        max-width: 450px;
+        padding: 42px 36px 38px;
+    }
+    
+    .carte {
+        padding: 28px 32px;
+    }
+    
+    .bloc-titre {
+        font-size: 24px;
+    }
+    
+    .nav-bas__lien {
+        padding: 6px 28px;
+        font-size: 12px;
+    }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+    .app-cadre {
+        max-width: 1024px;
+        border-left: 1px solid var(--mm-bordure);
+        border-right: 1px solid var(--mm-bordure);
+    }
+    
+    .page-connexion {
+        padding: 40px;
+    }
+    
+    .page-connexion__carte {
+        max-width: 480px;
+        padding: 48px 42px 44px;
+    }
+    
+    .page-connexion::before {
+        width: 600px;
+        height: 600px;
+        top: -150px;
+    }
+    
+    .carte {
+        padding: 32px 40px;
+    }
+    
+    .bloc-titre {
+        font-size: 26px;
+    }
+    
+    .champ__input {
+        font-size: 16px;
+        padding: 14px 16px;
+    }
+    
+    .bouton-principal,
+    .bouton-secondaire {
+        padding: 14px 24px;
+        font-size: 16px;
+    }
+    
+    .ligne-operation {
+        padding: 18px 20px;
+    }
+    
+    .nav-bas {
+        padding: 16px 32px;
+    }
+    
+    .nav-bas__lien {
+        padding: 8px 32px;
+        font-size: 13px;
+    }
+}
+
+/* Small mobile (320px - 375px) */
+@media (max-width: 375px) {
+    .app-cadre {
+        max-width: 100%;
+    }
+    
+    .page-connexion {
+        padding: 16px;
+    }
+    
+    .page-connexion__carte {
+        padding: 28px 20px 24px;
+        border-radius: 18px;
+    }
+    
+    .page-connexion__logo {
+        width: 48px;
+        height: 48px;
+        margin: 0 auto 14px;
+    }
+    
+    .page-connexion__titre {
+        font-size: 18px;
+    }
+    
+    .page-connexion__soustitre {
+        font-size: 12px;
+        margin-bottom: 20px;
+    }
+    
+    .carte {
+        padding: 20px 16px;
+    }
+    
+    .bloc-titre {
+        font-size: 20px;
+    }
+    
+    .champ__label {
+        font-size: 13px;
+    }
+    
+    .champ__input {
+        font-size: 14px;
+        padding: 12px 14px;
+    }
+    
+    .bouton-principal,
+    .bouton-secondaire {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+    
+    .ligne-operation {
+        padding: 14px 16px;
+    }
+    
+    .ligne-operation__type {
+        font-size: 13px;
+    }
+    
+    .ligne-operation__montant {
+        font-size: 15px;
+    }
+    
+    .nav-bas {
+        padding: 12px 16px;
+    }
+    
+    .nav-bas__lien {
+        padding: 4px 16px;
+        font-size: 10px;
+    }
+    
+    .destinataire-row {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .destinataire-row .champ {
+        width: 100%;
+    }
+}

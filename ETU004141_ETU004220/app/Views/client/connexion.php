@@ -30,8 +30,12 @@
                        placeholder="033 12 345 67" autocomplete="tel" required>
             </div>
             <button type="submit" class="bouton-principal" style="margin-top:4px;">Continuer</button>
+            
+            <div style="text-align:center;margin:12px 0;font-size:12px;color:var(--mm-texte-pale);">ou</div>
+            
+            <a href="<?= site_url('admin/login') ?>" class="bouton-secondaire" style="display:block;text-align:center;text-decoration:none;">Se connecter en tant qu'admin</a>
         </form>
-
+            
         <p style="margin-top:18px;font-size:11px;color:var(--mm-texte-pale);"> Connexion sécurisée</p>
     </div>
 </div>
