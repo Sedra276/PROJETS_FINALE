@@ -2,7 +2,9 @@
 
 namespace App\Libraries;
 
+use App\Models\PromotionModel;
 use App\Models\TrancheFraisModel;
+use App\Models\PromotionModelModel;
 
 /**
  * Service UNIQUE de calcul des frais.
@@ -13,10 +15,13 @@ use App\Models\TrancheFraisModel;
 class FraisCalculatorService
 {
     protected TrancheFraisModel $trancheFraisModel;
+    protected PromotionModel $promotionModel;
+
 
     public function __construct()
     {
         $this->trancheFraisModel = new TrancheFraisModel();
+        $this->promotionModel = new PromotionModel();
     }
 
     /**
@@ -44,6 +49,9 @@ class FraisCalculatorService
         }
 
         // MONTANT_FIXE
-        return (float) $tranche['valeur'];
+      $frais = round($montant *((float) $tranche['valeur']/100),2);
+
+
+      //application pro
     }
 }

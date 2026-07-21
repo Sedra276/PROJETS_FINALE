@@ -15,6 +15,8 @@ CREATE TABLE IF NOT EXISTS operateur_config (
     actif INTEGER NOT NULL DEFAULT 1 CHECK (actif IN (0,1))
 );
 
+
+
 CREATE TABLE IF NOT EXISTS utilisateur (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nom TEXT NOT NULL,
@@ -127,6 +129,17 @@ CREATE TABLE IF NOT EXISTS commission_interoperateur (
     pourcentage REAL NOT NULL CHECK (pourcentage >= 0 AND pourcentage <= 100),
     actif INTEGER NOT NULL DEFAULT 1 CHECK (actif IN (0,1)),
     FOREIGN KEY (id_operateur_config) REFERENCES operateur_config(id)
+);
+CREATE TABLE IF NOT EXISTS promotion (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    pourcentage REAL NOT NULL CHECK (pourcentage >= 0 AND pourcentage <= 100),
+    actif INTEGER NOT NULL DEFAULT 1 CHECK (actif IN (0,1)),
+    id_operateur_config INTEGER NOT NULL,
+    libelle TEXT NOT NULL,
+    date_debut TEXT NOT NULL DEFAULT (datetime('now')),
+    date_fin TEXT,
+    FOREIGN KEY (id_operateur_config) REFERENCES operateur_config(id)
+
 );
 
 CREATE INDEX IF NOT EXISTS idx_commission_interop_operateur ON commission_interoperateur(id_operateur_config);

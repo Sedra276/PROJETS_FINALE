@@ -160,3 +160,8 @@
 -[x]  base.sql a jour avec les nouvelles tables/champs V2
 -[x]  Taches.md a jour
 -[x]  Tag v2 pousse avant 17h10
+
+
+## Alea ETU004220
+Promotion en % pour le transfert au meme operateur que le notre 
+    -creation table promotion 
