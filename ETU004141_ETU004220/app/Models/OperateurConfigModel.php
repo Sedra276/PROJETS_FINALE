@@ -34,7 +34,10 @@ class OperateurConfigModel extends Model
     public function numeroRespectePrefixeValide(string $numeroTelephone): bool
     {
         foreach ($this->listerPrefixesActifs() as $prefixeConfig) {
-            if (strpos($numeroTelephone, $prefixeConfig['prefixe']) === 0) {
+            $prefixeLocal = $prefixeConfig['prefixe'];
+            $prefixeInternational = '+261' . substr($prefixeLocal, 1);
+            
+            if (strpos($numeroTelephone, $prefixeLocal) === 0 || strpos($numeroTelephone, $prefixeInternational) === 0) {
                 return true;
             }
         }
@@ -44,13 +47,14 @@ class OperateurConfigModel extends Model
     public function prefixeEstValide(string $numero): bool
     {
         $prefixes = $this->where('actif', 1)->findAll();
-
         foreach ($prefixes as $ligne) {
-            if (strpos($numero, $ligne['prefixe']) === 0) {
+            $prefixeLocal = $ligne['prefixe'];
+            $prefixeInternational = '+261' . substr($prefixeLocal, 1);
+            
+            if (strpos($numero, $prefixeLocal) === 0 || strpos($numero, $prefixeInternational) === 0) {
                 return true;
             }
         }
-
         return false;
     }
 
@@ -70,7 +74,10 @@ class OperateurConfigModel extends Model
     public function estPrefixeExterne(string $numeroTelephoneDestinataire): bool
     {
         foreach ($this->where('actif', 1)->findAll() as $operateur) {
-            if (strpos($numeroTelephoneDestinataire, $operateur['prefixe']) === 0) {
+            $prefixeLocal = $operateur['prefixe'];
+            $prefixeInternational = '+261' . substr($prefixeLocal, 1);
+            
+            if (strpos($numeroTelephoneDestinataire, $prefixeLocal) === 0 || strpos($numeroTelephoneDestinataire, $prefixeInternational) === 0) {
                 return (int) $operateur['est_notre_operateur'] === 0;
             }
         }
@@ -81,7 +88,10 @@ class OperateurConfigModel extends Model
         $prefixes = $this->where('actif', 1)->findAll();
 
         foreach ($prefixes as $ligne) {
-            if (strpos($numero, $ligne['prefixe']) === 0) {
+            $prefixeLocal = $ligne['prefixe'];
+            $prefixeInternational = '+261' . substr($prefixeLocal, 1);
+            
+            if (strpos($numero, $prefixeLocal) === 0 || strpos($numero, $prefixeInternational) === 0) {
                 return [
                     'est_interne' => (bool) $ligne['est_notre_operateur'],
                     'operateur' => $ligne

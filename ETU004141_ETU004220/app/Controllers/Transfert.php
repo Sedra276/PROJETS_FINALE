@@ -22,9 +22,12 @@ class Transfert extends BaseController
         $fraisRetraitInclus = $this->request->getPost('frais_retrait_inclus') === '1';
 
         $telephoneLength = config('App')->telephoneLength;
-        if (strlen($numeroDestinataire) !== $telephoneLength || !ctype_digit($numeroDestinataire)) {
-            return redirect()->back()->with('erreur', "Le numero du destinataire doit contenir exactement {$telephoneLength} chiffres");
+        if (!preg_match('/^(0[0-9]{8}|\+261[0-9]{9})$/', $numeroDestinataire)) {
+            return redirect()->back()->with('erreur', "Format de numero invalide. Utilisez 0XX ou +261 XX");
         }
+
+        // Normaliser le numero pour stockage et recherche (convertir +261 en 0)
+        $numeroDestinataire = $this->normaliserNumero($numeroDestinataire);
 
         if ($montant <= 0) {
             return redirect()->back()->with('erreur', 'Montant invalide');
@@ -116,5 +119,16 @@ class Transfert extends BaseController
         }
 
         return redirect()->to('/client/solde')->with('succes', 'Transfert effectue');
+    }
+
+    private function normaliserNumero(string $numero): string
+    {
+        // Convertir le format international (+26134...) en format local (034...)
+        if (strpos($numero, '+261') === 0) {
+            $indicatif = substr($numero, 4, 2);
+            $reste = substr($numero, 6);
+            return '0' . $indicatif . $reste;
+        }
+        return $numero;
     }
 }

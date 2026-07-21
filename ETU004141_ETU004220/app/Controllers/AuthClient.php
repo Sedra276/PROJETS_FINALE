@@ -21,9 +21,12 @@ class AuthClient extends BaseController
         }
 
         $telephoneLength = config('App')->telephoneLength;
-        if (strlen($numero) !== $telephoneLength || !ctype_digit($numero)) {
-            return redirect()->back()->with('erreur', "Le numero doit contenir exactement {$telephoneLength} chiffres");
+        if (!preg_match('/^(0[0-9]{8}|\+261[0-9]{9})$/', $numero)) {
+            return redirect()->back()->with('erreur', "Format de numero invalide. Utilisez 0XX ou +261 XX");
         }
+
+        // Normaliser le numero pour stockage et recherche (convertir +261 en 0)
+        $numero = $this->normaliserNumero($numero);
 
         $modeleOperateur = new OperateurConfigModel();
         $infoOperateur = $modeleOperateur->determinerOperateur($numero);
@@ -57,5 +60,16 @@ class AuthClient extends BaseController
     {
         session()->destroy();
         return redirect()->to('/client/connexion');
+    }
+
+    private function normaliserNumero(string $numero): string
+    {
+        // Convertir le format international (+26134...) en format local (034...)
+        if (strpos($numero, '+261') === 0) {
+            $indicatif = substr($numero, 4, 2);
+            $reste = substr($numero, 6);
+            return '0' . $indicatif . $reste;
+        }
+        return $numero;
     }
 }

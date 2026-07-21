@@ -39,9 +39,12 @@ class EnvoiMultiple extends BaseController
             $numero = $dest['numero'] ?? '';
             $montant = (float) ($dest['montant'] ?? 0);
 
-            if (strlen($numero) !== $telephoneLength || !ctype_digit($numero)) {
-                return redirect()->back()->with('erreur', "Le destinataire {$index} a un numero invalide");
+            if (!preg_match('/^(0[0-9]{8}|\+261[0-9]{9})$/', $numero)) {
+                return redirect()->back()->with('erreur', "Destinataire {$index}: format invalide. Utilisez 0XX ou +261 XX");
             }
+
+            // Normaliser le numero pour stockage et recherche (convertir +261 en 0)
+            $numero = $this->normaliserNumero($numero);
 
             if ($montant <= 0) {
                 return redirect()->back()->with('erreur', "Le montant du destinataire {$index} est invalide");
@@ -135,5 +138,16 @@ class EnvoiMultiple extends BaseController
         }
 
         return redirect()->to('/client/solde')->with('succes', 'Envoi multiple effectué avec succès');
+    }
+
+    private function normaliserNumero(string $numero): string
+    {
+        // Convertir le format international (+26134...) en format local (034...)
+        if (strpos($numero, '+261') === 0) {
+            $indicatif = substr($numero, 4, 2);
+            $reste = substr($numero, 6);
+            return '0' . $indicatif . $reste;
+        }
+        return $numero;
     }
 }
